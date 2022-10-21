@@ -1,0 +1,36 @@
+:root{
+    --dark: #16191c;
+    --dar-x: #1e2126;
+    --ligth: #ffffff;
+}
+body{
+    font-family: 'Spartan', sans-serif !important;
+    font-weight: 300 !important;
+    color: #ffffff !important;
+}
+.bg-dark{
+    background-color: #16191c !important;
+}
+.font-weight-bold{
+    font-weight: bold !important;
+}
+.bg-dark-x{
+    background-color: #1e2126 !important;
+}
+.form-control, .btn{
+    min-height: 3.125rem !important;
+    line-height: initial;
+}
+.img-1{
+    background-image: URL(../../Assets/images/Login/Slide\ 1.png);
+    background-size: cover;
+    background-position: center;
+}
+.img-2{
+    background-image: URL(../../Assets/images/Login/Slide\ 2.png);
+    background-size: cover;
+    background-position: center;
+}
+.form-control{
+    color: #ffffff !important;
+}
