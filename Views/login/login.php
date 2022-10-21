@@ -45,30 +45,30 @@
             </div>
             <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100">
                 <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100 mb-auto">
-                    <img src="Assets/Brand/Logo PNG/Logo Celia Viñas.png" class="img-fluid" width="8%">
+                    <img src="Assets/Brand/Logo PNG/Logo Celia Viñas.png" class="img-fluid" width="25%">
                 </div>
                 <div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
                     <h1 clas="font-weight-bold mb-4">Bienvenido de vuelta</h1>
-                    <form class="mb-5">
+                    <form class="mb-5" action="index.php?controller=UsersController&action=iniciarSesion" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
-                          <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
-                          <input type="email" class="form-control bg-dark-x border-0" placeholder="Ingresa tu email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          <label for="exampleInputEmail1" class="form-label font-weight-bold">Nombre de Usuario</label>
+                          <input type="text" class="form-control bg-dark-x border-0" placeholder="Ingresa tu nombre de usuario" name="username-email" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-4">
                           <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
-                          <input type="password" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu contraseña" id="exampleInputPassword1">
+                          <input type="password" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu contraseña" name="password-login" id="exampleInputPassword1">
                           <a href="#" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu contraseña?</a>
                         </div>
                         <input type="submit" class="btn btn-primary w-100" value="Iniciar Sesión">
                       </form>
-                      <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
+                      <!--<p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
                       <div class="d-flex justify-content-around">
                         <button type="submit" class="btn btn-outline-light flex-grow-1 ms-2"><i class="fa-brands fa-google lead mx-2"></i>Google</button>
                         <button type="submit" class="btn btn-outline-light flex-grow-1 mx-2"><i class="fa-brands fa-facebook-f lead mx-2"></i>Facebook</button>
-                      </div>
+                      </div>-->
                 </div>
                 <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 w-100 mt-auto">
-                    <p class="d-inline-block mb-0">¿Todavia no tienes una cuenta?</p> <a href="#" class="text-light font-weight-bold text-decoration-none">Crea una ahora</a>
+                    <!--<p class="d-inline-block mb-0">¿Todavia no tienes una cuenta?</p> <a href="#" class="text-light font-weight-bold text-decoration-none">Crea una ahora</a>-->
                 </div>
             </div>
             

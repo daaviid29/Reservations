@@ -112,16 +112,12 @@
 
         }
 
-        public function iniciarSesion($username, $email, $password){
-            if(is_null($username)){
-                $sql = "SELECT id, email, password FROM users WHERE email = '{$this->email}' AND  password = '{$this->password}';";
-                
-                $login = $this->dataQuery($sql);
-            }else{
-                $sql = "SELECT id, email, password FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";   
+        public function iniciarSesion(){
+            
+            $sql = "SELECT id FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";
 
-                $login = $this->dataQuery($sql);
-            }
+            $login = $this->dataQuery($sql);
+            
             return $login;
         }
 

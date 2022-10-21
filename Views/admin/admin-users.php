@@ -1,3 +1,10 @@
+<style>
+    .user-img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+    }
+</style>
 <div class="container mt-5">
         <div class="container-breadcum row">
           <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="mt-5 position-relative top-5 start-50 translate-middle text-center col-auto">
@@ -79,7 +86,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($data['users'] as $user): ?>  
+                <?php foreach($data['users'] as $user): ?>
                 <tr>
                     <th scope="row"><?= $user->id ?></th>
                     <td><img src="<?= $user->image ?>" alt="user" class="user-img"></td>

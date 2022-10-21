@@ -8,7 +8,7 @@
 // En esta implementación, usaremos variables de sesión para la autenticación de usuarios
 // y limpieza de variables sencilla basada en una lista de palabras y caracteres prohibidos. 
 
-class Seguridad {
+class SecurityModel{
 
     // Abre una sesión y guarda el id del usuario
     public static function iniciarSesion($id) {

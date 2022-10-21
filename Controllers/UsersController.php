@@ -99,22 +99,26 @@
         public function iniciarSesion(){
             // Cargamos el modelo
             require_once 'Models/UsersModel.php';
+            require_once 'Models/SecurityModel.php';
 
             // Crearemos el objeto sobre el que trabajaremos
             $user = new UsersModel();
 
             // Recogemos los datos y utilizamos los setters para guardarlos
-            $user->setUsername($_REQUEST['username-user']);
-            $user->setPassword($_REQUEST['password-user']);
+            $user->setUsername(SecurityModel::limpiar($_REQUEST['username-email']));
+            $user->setPassword($_REQUEST['password-login']);
 
             // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $data['iniciarSesion'] = $user->iniciarSesion($_GET['id']);
+            $data['iniciarSesion'] = $user->iniciarSesion();
 
-            // Redirigimos al usuario para mostrar el listado de usuarios
-            header("Location: ?controller=UsersController&action=mostrarUsuarios");
+            if(count($data['iniciarSesion']) != 0){
+                SecurityModel::iniciarSesion($data['iniciarSesion'][0]->id);
+                header("Location: ?controller=UsersController&action=mostrarUsuarios");
+            }else{
+                // Redirigimos al usuario para mostrar el listado de usuarios
+                header("Location: index.php");
+            }
 
-            // Requerimos la vista donde mostraremos el contenido
-            View::adminViews('admin-users', $data);
         }
 
         /*public function buscarActor(){
