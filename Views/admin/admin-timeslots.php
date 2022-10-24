@@ -24,7 +24,16 @@
                             <form action="?controller=TimeSlotsController&action=crearTimeSlot" method="POST" enctype="multipart/form-data">
                                 <div class="row mt-3">
                                     <label for="titulo-pelicula" class="form-label">Día de la Semana</label>
-                                    <input type="date" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="dayofweek-timeslots" required="required">
+                                    <select class="form-select" aria-label="Default select example" name="dayofweek-timeslots">
+                                        <option selected disabled>-- Seleccionau un día de la semana --</option>
+                                        <option value="Lunes">Lunes</option>
+                                        <option value="Martes">Martes</option>
+                                        <option value="Miercoles">Miercoles</option>
+                                        <option value="Jueves">Jueves</option>
+                                        <option value="Viernes">Viernes</option>
+                                        <option value="Sábado" disabled>Sábado</option>
+                                        <option value="Domingo" disabled>Domingo</option>
+                                    </select>
                                 </div>
                                 <div class="row mt-4 mb-5">
                                     <div class="col-md-6">

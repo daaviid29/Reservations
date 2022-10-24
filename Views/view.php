@@ -13,6 +13,17 @@ class View{
         include($directorioThemplates . "footer.php");
         include($directorio . "$viewName.php");
     }
+
+    public static function userViews($viewName, $data = null) {
+        $directorioThemplates = "users/Themplates/";
+        $directorio = "users/";
+        
+        include($directorioThemplates . "sidebar.php");
+        include($directorioThemplates . "navbar.php");
+        include($directorioThemplates . "footer.php");
+        include($directorio . "$viewName.php");
+    }
+
     /*public function get($id = null){
         if(is_null($id)){
 

@@ -118,7 +118,6 @@
                 // Redirigimos al usuario para mostrar el listado de usuarios
                 header("Location: index.php");
             }
-
         }
 
         /*public function buscarActor(){

@@ -96,6 +96,20 @@
             View::adminViews('editar-resource', $data);
         }
 
+        public function resourcesUser(){
+            // Cargamos el modelo
+            require_once 'Models/ResourcesModel.php';
+
+             // Crearemos el objeto sobre el que trabajaremos
+            $resources = new ResourcesModel();
+
+            // Accedemos al objeto libro y a su método getPeliculas donde le pasamos la tabla para poder obtener los datos
+            $data['resources'] = $resources->getResources('resources');
+
+            // Cargamos la vista donde mostraremos el contenido
+            View::userViews('user-resources', $data);
+        }
+
         /*public function buscarActor(){
             // Cargamos el modelo
             require_once 'Models/ActoresModel.php';
