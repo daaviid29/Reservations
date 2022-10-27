@@ -39,29 +39,40 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="index.php?controller=ResourcesController&action=crearResource" method="POST" enctype="multipart/form-data">
+                                        <form action="?controller=ResourcesController&action=reservarRecurso&id=<?= $resource->id; ?>" method="POST" enctype="multipart/form-data">
                                             <div class="row mt-3">
                                                 <div class="col-md-6">
-                                                    <label for="titulo-pelicula" class="form-label">Fecha de la Reserva</label>
-                                                    <input type="date" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="name-resources" required="required">
+                                                    <label for="titulo-pelicula" class="form-label" name="">Día de la Reserva</label>
+                                                    <select class="form-select" aria-label="Default select example" id="dayofweek" onchange="changeTimeSlot();">
+                                                        <option selected disabled>-- Selecciona una opción --</option>
+                                                        <option value="Lunes">Lunes</option>
+                                                        <option value="Martes">Martes</option>
+                                                        <option value="Miercoles">Miercoles</option>
+                                                        <option value="Jueves">Jueves</option>
+                                                        <option value="Viernes">Viernes</option>
+                                                        <option value="Sábado" disabled>Sábado</option>
+                                                        <option value="Domingo" disabled>Domingo</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6 ms-auto">
                                                     <label for="genero-pelicula" class="form-label">Time Slot</label>
-                                                    <select class="form-select" aria-label="Default select example">
+                                                    <select class="form-select" aria-label="Default select example" id="timeslot" name="timeslot-resource">
                                                         <option selected disabled>-- Selecciona una opción --</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
-                                            <label for="genero-pelicula" class="form-label">Descripción del recurso</label>
+                                            <label for="genero-pelicula" class="form-label">Observaciones</label>
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resources"></textarea>
+                                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resource"></textarea>
                                                     <label for="floatingTextarea2"></label>
                                                 </div>
-                                            </div>                                        
+                                            </div>    
+                                            
+                                            <!--<div class="row mt-4">
+                                                <span id="prueba"></span>
+                                            </div>-->
+
                                             <div class="modal-footer mt-2">
                                                 <input type="submit" class="btn btn-primary" value="Reservar">
                                             </div>
@@ -78,3 +89,39 @@
         </table>
     </div>
 </section>
+
+<script>
+
+    var timeslot = <?php echo json_encode($data['timeslots']); ?>
+    
+    //console.log(timeslot);
+
+    function changeTimeSlot(){
+        let dayofweek = document.getElementById('dayofweek').value;
+        let timeslots = document.getElementById('timeslot');
+
+        let dayofweekarray = [];
+
+        for(var i = 0; i < timeslot.length; i++){
+            if(timeslot[i]['dayofweek'] == dayofweek){
+                dayofweekarray.push(timeslot[i]);
+            }
+        }
+
+        //console.log(dayofweekarray);
+
+        document.getElementById("timeslot").innerHTML= "";
+        let option = document.createElement("option");
+        option.text = "-- Selecciona una opción --";
+        option.value = "selected" + " disabled";
+        timeslots.add(option);
+
+        for(var i = 0; i < dayofweekarray.length; i++){
+            let option = document.createElement("option");
+            option.text = dayofweekarray[i]['starttime'] + " | " + dayofweekarray[i]['endtime'];
+            option.value = dayofweekarray[i]['id'];
+            console.log(option)
+            timeslots.add(option);
+        }
+    }
+</script>

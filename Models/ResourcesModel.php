@@ -99,6 +99,16 @@
 
         }
 
+        public function setReservation($idResource, $idUser, $idTimeSlot, $remarks){
+
+            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), $remarks);";
+
+            $setReservation = $this->dataManipulation($sql);
+
+            return $setReservation;
+
+        }
+
 
     }
 

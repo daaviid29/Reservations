@@ -8,7 +8,7 @@
             // Cargamos el modelo
             require_once 'Models/TimeSlotsModel.php';
 
-             // Crearemos el objeto sobre el que trabajaremos
+            // Crearemos el objeto sobre el que trabajaremos
             $timeslots = new TimeSlotsModel();
 
             // Accedemos al objeto libro y a su método getPeliculas donde le pasamos la tabla para poder obtener los datos

@@ -1,6 +1,7 @@
 <?php
 
     require_once "Views/view.php";
+    require_once "Models/SecurityModel.php";
 
     class ResourcesController{
         
@@ -97,17 +98,44 @@
         }
 
         public function resourcesUser(){
-            // Cargamos el modelo
-            require_once 'Models/ResourcesModel.php';
+            if(SecurityModel::haySesion()){
+                // Cargamos el modelo
+                require_once 'Models/ResourcesModel.php';
+                require_once 'Models/TimeSlotsModel.php';
 
-             // Crearemos el objeto sobre el que trabajaremos
-            $resources = new ResourcesModel();
+                // Crearemos el objeto sobre el que trabajaremos
+                $resources = new ResourcesModel();
+                $timeslots = new TimeSlotsModel();
 
-            // Accedemos al objeto libro y a su método getPeliculas donde le pasamos la tabla para poder obtener los datos
-            $data['resources'] = $resources->getResources('resources');
+                // Accedemos al objeto libro y a su método getPeliculas donde le pasamos la tabla para poder obtener los datos
+                $data['resources'] = $resources->getResources('resources');
+                $data['timeslots'] = $timeslots->getTimeslots('timeslots');
 
-            // Cargamos la vista donde mostraremos el contenido
-            View::userViews('user-resources', $data);
+                // Cargamos la vista donde mostraremos el contenido
+                View::userViews('user-resources', $data);
+            }
+        }
+
+        public function reservarRecurso(){
+            if(SecurityModel::haySesion()){
+                // Cargamos el modelo
+                require_once 'Models/ResourcesModel.php';
+
+                // Crearemos el objeto sobre el que trabajaremos
+                $resources = new ResourcesModel();
+
+                // Recogemos los datos y utilizamos los setters para guardarlos
+                $idResource =  $_REQUEST['id'];
+                $idUser = SecurityModel::getIdUsuario();
+                $idTimeSlot = $_REQUEST['timeslot-resource']; 
+                $remarks = $_REQUEST['description-resource'];
+
+                // Accedemos al objeto libro y a su método getPeliculas donde le pasamos la tabla para poder obtener los datos
+                $data['reservations'] = $resources->setReservation($idResource, $idUser, $idTimeSlot, $remarks);
+
+                // Cargamos la vista donde mostraremos el contenido
+                //header("Location: ?controller=ResourcesController&action=resourcesUser");
+            }
         }
 
         /*public function buscarActor(){

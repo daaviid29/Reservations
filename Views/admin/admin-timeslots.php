@@ -53,6 +53,7 @@
                       </div>
                     </div>
                   </div>
+    <div class="table-responsive">
         <table class="table table-hover table-light mt-3 text-center">
             <thead>
                 <tr>
@@ -88,4 +89,5 @@
             </tbody>
         </table>
     </div>
+</div>
 </section>

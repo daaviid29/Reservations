@@ -248,4 +248,19 @@
   .sidebar li .tooltip{
     display: none;
   }
+  .sidebar.open{
+    width: 100% !important;
+  }
+  .sidebar.open li.profile{
+    width: 100%;
+  }
+  .sidebar.open .profile #log_out{
+    width: 80px;
+  }
+  .sidebar.open input{
+    width: 80%;
+  }
+  .sidebar li a:hover{
+    width: 80%;
+  }
 }

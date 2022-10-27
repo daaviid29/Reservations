@@ -1,5 +1,6 @@
 <?php
-
+    
+    session_start();
     require_once 'autoload.php';
 
     if(isset($_GET['controller'])){
@@ -18,11 +19,11 @@
             $controlador->$action();
     
         }else{
-            echo "La página que buscas no existe 2";
+            require_once 'Views/404/404.php';
         }
 
     }else{
-        echo "La página que buscas no existe 3";
+        require_once 'Views/404/404.php';
     }
 
 ?>
