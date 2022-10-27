@@ -113,8 +113,8 @@
 
             if(count($data['iniciarSesion']) != 0){
                 SecurityModel::iniciarSesion($data['iniciarSesion'][0]->id);
-                echo $data['iniciarSesion'][0]->id;
-                header("Location: ?controller=ResourcesController&action=resourcesUser");
+                View::adminViews('dashboard');
+                //header("Location: ?controller=ResourcesController&action=resourcesUser");
             }else{
                 // Redirigimos al usuario para mostrar el listado de usuarios
                 header("Location: index.php");

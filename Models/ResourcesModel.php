@@ -101,7 +101,9 @@
 
         public function setReservation($idResource, $idUser, $idTimeSlot, $remarks){
 
-            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), $remarks);";
+            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), '$remarks');";
+
+            echo $sql;
 
             $setReservation = $this->dataManipulation($sql);
 

@@ -134,7 +134,7 @@
                 $data['reservations'] = $resources->setReservation($idResource, $idUser, $idTimeSlot, $remarks);
 
                 // Cargamos la vista donde mostraremos el contenido
-                //header("Location: ?controller=ResourcesController&action=resourcesUser");
+                header("Location: ?controller=ResourcesController&action=resourcesUser");
             }
         }
 
