@@ -9,7 +9,7 @@
 
     class ResourcesController{
     
-        // Método para mostraremos todos los recursos para el Administrador/Administradores del sistema
+        // Método para mostrar todos los recursos SOLO PARA ADMINISTRADORES.
         public function mostrarResources(){
             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
             if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
@@ -42,7 +42,8 @@
                 $resources->setDescription(SecurityModel::limpiar($_REQUEST['description-resources']));
                 $resources->setImage(SecurityModel::limpiar($_FILES['file-resources']['name']));
 
-                // Almacenamos el resultado del método crearResources en una variable, data en el índice insertResource, puesto que data es un array
+                // Accedemos al objeto resources que creamos anteriormente, más concretamente al método crearResources(), el cual no tiene parámetros puesto que
+                // utilizamos los setters para asignar parámetros anteriormente.
                 $resources->crearResources();
 
                 // Redirigimos al usuario al método mostrarResources donde mostrará todos los usuarios creados incluyendo el nuevo que acabamos de crear.
@@ -63,8 +64,9 @@
                 // Crearemos el objeto sobre el que trabajaremos
                 $resources = new ResourcesModel();
 
-                // Almacenamos el resultado del método borrarResource (el cual recibe un parámetro que es el ID del recurso que queremos borrar)
-                /*$data['deleteResource'] = */ $resources->borrarResource($_GET['id']);
+                // Accedemos al objeto resources que creamos anteriormente, más concretamente al método borrarResource() 
+                // (el cual recibe un parámetro que es el ID del recurso que queremos borrar)
+                $resources->borrarResource($_GET['id']);
 
                 // Redirigimos al usuario al método mostrarResources donde mostrará todos los usuarios actuales, excepto el que acabamos de borrar puesto que ya no
                 // se encuentra en nuestra base de datos
