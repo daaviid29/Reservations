@@ -10,6 +10,7 @@
         private $realname;
         private $lastname;
         private $image;
+        private $rol;
         private $directorio;
 
         public function __construct(){
@@ -52,6 +53,14 @@
             return $this->lastname;
         }
 
+        public function setRol($rol){
+            $this->rol = $rol;
+        }
+
+        public function getRol(){
+            return $this->rol;
+        }
+
         public function setImage($image){
             if (move_uploaded_file($_FILES['file-user']['tmp_name'], $this->directorio.basename($_FILES['file-user']['name']))) {
                 //echo "La subida del archivo se ha efectuado con éxito";
@@ -75,7 +84,7 @@
 
         public function crearUser(){
 
-            $sql = "INSERT INTO users (username, password, realname, lastname, image) VALUES('{$this->username}','{$this->password}','{$this->realname}', '{$this->lastname}', '{$this->image}')";
+            $sql = "INSERT INTO users (username, email, password, realname, lastname, image, type) VALUES('{$this->username}', '{$this->email}', '{$this->password}','{$this->realname}', '{$this->lastname}', '{$this->image}', '{$this->rol}')";
 
             $crearUsuario = $this->dataManipulation($sql);
 

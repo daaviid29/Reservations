@@ -28,10 +28,12 @@
 
             // Recogemos los datos y utilizamos los setters para guardarlos
             $users->setRealname($_REQUEST['realname-user']);
+            $users->setEmail($_REQUEST['email-user']);
             $users->setLastname($_REQUEST['lastname-user']);
             $users->setUsername($_REQUEST['username-user']);
             $users->setPassword($_REQUEST['password-user']);
             $users->setImage($_FILES['file-user']['name']);
+            $users->setRol($_REQUEST['role-user']);
 
             // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
             $data['insertUser'] = $users->crearUser();
@@ -81,10 +83,12 @@
 
             // Recogemos los datos y utilizamos los setters para guardarlos
             $users->setRealname($_REQUEST['realname-user']);
+            $users->setEmail($_REQUEST['email-user']);
             $users->setLastname($_REQUEST['lastname-user']);
             $users->setUsername($_REQUEST['username-user']);
             $users->setPassword($_REQUEST['password-user']);
             $users->setImage($_FILES['file-user']['name']);
+            $users->setRol($_REQUEST['role-user']);
 
             // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
             $data['updateUser'] = $users->actualizarUser($_GET['id']);

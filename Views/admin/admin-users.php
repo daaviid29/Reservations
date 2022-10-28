@@ -39,10 +39,18 @@
                                     </div>
                                 </div>
 
-                                <div class="row mt-4 mt-2">
-                                    <div class="ms-auto">
-                                        <label for="genero-pelicula" class="form-label">Email</label>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                    <label for="genero-pelicula" class="form-label">Email</label>
                                         <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="email-user">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="genero-pelicula" class="form-label">Rol</label>
+                                        <select class="form-select" aria-label="Default select example" name="role-user">
+                                            <option value="-" disabled selected>-- Selecciona una opción --</option>
+                                            <option value="1">Usuario</option>
+                                            <option value="0">Administrador</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -79,7 +87,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Fotografía</th>
                     <th scope="col">Nombre y Apellidos</th>
-                    <!--<th scope="col">Email</th>-->
+                    <th scope="col">Email</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
@@ -91,7 +99,7 @@
                     <th scope="row"><?= $user->id ?></th>
                     <td><img src="<?= $user->image ?>" alt="user" class="user-img"></td>
                     <td><?= $user->realname ?>&nbsp;<?= $user->lastname ?></td>
-                    <!--<td><?= $user->email ?></td>-->
+                    <td><?= $user->email ?></td>
                     <td><?= $user->username ?></td>
                     <td><?= $user->type ?></td>
                     <td>

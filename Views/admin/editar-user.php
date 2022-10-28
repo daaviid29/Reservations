@@ -40,17 +40,21 @@
                         <input type="text" class="form-control" placeholder="<?= $user->lastname?>" name="lastname-user" aria-label="Last name">
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row g-3 mt-3">
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Nombre de usuario</label>
                         <input type="text" class="form-control" placeholder="<?= $user->username?>" name="username-user" aria-label="Last name">
+                    </div>
+                    <div class="col">
+                        <label for="genero-pelicula" class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="<?= $user->email?>" name="email-user" aria-label="Last name">
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Rol</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="role-user">
                             <option value="-" disabled="disabled" selected="selected">-- Selecciona una opción --</option>
                             <option value="0">Administrador</option>
                             <option value="1">Usuario</option>
