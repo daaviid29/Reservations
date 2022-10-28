@@ -9,7 +9,7 @@
 
     class ResourcesController{
     
-        // Mostraremos todos los recursos para el Administrador/Administradores del sistema
+        // Método para mostraremos todos los recursos para el Administrador/Administradores del sistema
         public function mostrarResources(){
             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
             if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
@@ -43,7 +43,7 @@
                 $resources->setImage(SecurityModel::limpiar($_FILES['file-resources']['name']));
 
                 // Almacenamos el resultado del método crearResources en una variable, data en el índice insertResource, puesto que data es un array
-                $data['insertResource'] = $resources->crearResources();
+                $resources->crearResources();
 
                 // Redirigimos al usuario al método mostrarResources donde mostrará todos los usuarios creados incluyendo el nuevo que acabamos de crear.
                 header("Location: ?controller=ResourcesController&action=mostrarResources");
@@ -87,7 +87,7 @@
 
                 // Almacenamos en la variable data, en el índice getResource todos los datos del recurso que queremos mostrar su contenido por pantalla
                 // Este método se utiliza principalmente como intermediario entre todos los recursos y la actualización de uno de ellos, es decir, cuando le demos
-                // a modificar en uno de los recursos nos traerá a este método donde previsualizaremos sus contenido, y en caso de querer actualizarlos podemos
+                // a modificar en uno de los recursos nos traerá a este método donde previsualizaremos su contenido, y en caso de querer actualizarlos podemos
                 // escribirlos de nuevo en los campos y luego darle al botón de actualizar y llamaría al método que tenemos más abajo para actualizarlos.
                 // A su vez, el método mostrarResource() recibe un parámetro que es el ID del recurso que queremos previsualizar
                 $data['getResource'] = $resources->mostrarResource($_GET['id']);
