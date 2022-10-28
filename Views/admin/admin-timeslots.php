@@ -25,7 +25,7 @@
                                 <div class="row mt-3">
                                     <label for="titulo-pelicula" class="form-label">Día de la Semana</label>
                                     <select class="form-select" aria-label="Default select example" name="dayofweek-timeslots">
-                                        <option selected disabled>-- Seleccionau un día de la semana --</option>
+                                        <option selected disabled>-- Selecciona un día de la semana --</option>
                                         <option value="Lunes">Lunes</option>
                                         <option value="Martes">Martes</option>
                                         <option value="Miercoles">Miercoles</option>

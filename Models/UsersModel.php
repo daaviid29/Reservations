@@ -123,13 +123,12 @@
 
         public function iniciarSesion(){
             
-            $sql = "SELECT id FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";
+            $sql = "SELECT id, type FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";
 
             $login = $this->dataQuery($sql);
             
             return $login;
         }
-
 
     }
 

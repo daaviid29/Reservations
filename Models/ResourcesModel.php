@@ -101,13 +101,20 @@
 
         public function setReservation($idResource, $idUser, $idTimeSlot, $remarks){
 
-            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), '$remarks');";
-
-            echo $sql;
+            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), '$remarks');";;
 
             $setReservation = $this->dataManipulation($sql);
 
             return $setReservation;
+
+        }
+
+        public function getAllReservations(){
+            $sql = "SELECT users.username, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, resources.name, reservations.date FROM reservations INNER JOIN resources ON reservations.idResource = resources.id INNER JOIN timeslots ON reservations.idTimeSlot = timeslots.id INNER JOIN users ON reservations.idUser = users.id;";
+
+            $getReservas = $this->dataQuery($sql);
+
+            return $getReservas;
 
         }
 

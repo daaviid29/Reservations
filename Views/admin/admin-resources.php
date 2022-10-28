@@ -80,7 +80,8 @@
                                 <i class="fa-solid fa-gear"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="?controller=ResourcesController&action=borrarResource&id=<?= $resource->id ?>"><i class="fa-solid fa-trash"></i>&nbsp; Borrar</a></li>
+                                <!--<li><a class="dropdown-item" href="?controller=ResourcesController&action=borrarResource&id=<?= $resource->id ?>"><i class="fa-solid fa-trash"></i>&nbsp; Borrar</a></li>-->
+                                <li><a class="dropdown-item" href="#" onclick="confirmarBorrado(<?= $resource->id ?>)"><i class="fa-solid fa-trash"></i>&nbsp; Borrar</a></li>
                                 <li><a class="dropdown-item" href="?controller=ResourcesController&action=mostrarResource&id=<?= $resource->id ?>"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</a></li>
                                 <!--<li><hr class="dropdown-divider"></li>-->                           
                             </ul>
@@ -93,3 +94,26 @@
     </div>
 </div>
 </section>
+    <script>
+        function confirmarBorrado(idResource){
+            swal({
+                title: "¿Estás seguro?",
+                text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    swal("¡Recurso borrado correctamente!", {
+                    icon: "success",
+                    });
+                    setTimeout(() => {
+                        window.location.href = "?controller=ResourcesController&action=borrarResource&id=" + idResource;
+                    }, 2000);
+                } else {
+                    swal("¡Su recurso no ha sido borrado!");
+                }
+            });
+        }
+    </script>

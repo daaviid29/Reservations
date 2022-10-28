@@ -1,5 +1,6 @@
 <?php
 
+    require_once 'dataModel.php';
 // CAPA DE SEGURIDAD
 
 // Esta clase puede mejorarse indefinidamente para construir
@@ -15,9 +16,18 @@ class SecurityModel{
         $_SESSION["idUsuario"] = $id;
     }
 
+    public function setRol($rol){
+        $_SESSION["rolUsuario"] = $rol;
+    }
+
+    public static function getRol(){
+        return $_SESSION["rolUsuario"];
+    }
+
     // Cierra una sesión y elimina el id del usuario
     public static function cerrarSesion() {
         session_destroy();
+        header("Location: index.php");
     }
 
     // Devuelve el id del usuario que inició la sesión

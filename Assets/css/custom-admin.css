@@ -2,3 +2,18 @@
 nav.navbar.navbar-dark.bg-dark{
     background-color: #11101D !important;
 }
+
+body::-webkit-scrollbar{
+    width: 10px !important;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: #11101D !important;
+    /*border-bottom-right-radius: 50px !important;
+    border-bottom-left-radius: 50px !important;
+    border-radius: 50px !important;*/
+}
+
+body::-webkit-scrollbar-thumb:hover{
+    background: #1b3359 !important;
+}

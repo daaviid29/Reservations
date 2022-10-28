@@ -1,6 +1,7 @@
 <?php
 
     require_once "Views/view.php";
+    require_once 'Models/SecurityModel.php';
 
     class UsersController{
         
@@ -103,7 +104,6 @@
         public function iniciarSesion(){
             // Cargamos el modelo
             require_once 'Models/UsersModel.php';
-            require_once 'Models/SecurityModel.php';
 
             // Crearemos el objeto sobre el que trabajaremos
             $user = new UsersModel();
@@ -117,12 +117,30 @@
 
             if(count($data['iniciarSesion']) != 0){
                 SecurityModel::iniciarSesion($data['iniciarSesion'][0]->id);
-                View::adminViews('dashboard');
-                //header("Location: ?controller=ResourcesController&action=resourcesUser");
+                SecurityModel::setRol($data['iniciarSesion'][0]->type);
+                // Aquí vamos a comprobar el tipo de usuario que es 1 = Usuario sin permisos de administrador 0 = Adminsitrador.
+                // Al ser usuario normal, y el login es correcto vamos a redirigirlo a una vista que no pueda editar ni añadir los recursos, pero si ver un listado
+                if(SecurityModel::getRol() == 1){
+                    header("Location: ?controller=ResourcesController&action=resourcesUser");
+                }else if(SecurityModel::getRol() == 0){
+                    // Al ser un usuario Administrador, y el login es correcto vamos a redirigirlo a una vista donde tenga un botón de añadir recurso
+                    // y los botones de eliminar y editar.
+                    header("Location: ?controller=ResourcesController&action=mostrarResources");
+                }else{
+                    // Si no es ninguno de los otros usuarios para controlarlo, vamos a producir un error, es decir, en el controlador que llamámos no existe 
+                    // ese método por lo que se irá a index y allí tenemos configurado que si no existe un método muestre una página de error 404
+                    header("Location: ?controller=ResourcesController&action=error");
+                }
             }else{
-                // Redirigimos al usuario para mostrar el listado de usuarios
+                // En caso que el login no haya sido correcto, es decir que no esté el usuario en la bd o no sea correcto el usuario y contraseña redirigirémos a index
+                // puesto que aquí nos muestra siempre el login a menos que haya una sesión iniciada o un método cargado en la URL
                 header("Location: index.php");
             }
+        }
+
+        public function cerrarSesion(){
+            // Accedemos al modelo SecurityModel, más en concreto al método cerrarSesión para cerrar la sesión del usuario desde nuestra capa de seguridad
+            SecurityModel::cerrarSesion();
         }
 
         /*public function buscarActor(){
