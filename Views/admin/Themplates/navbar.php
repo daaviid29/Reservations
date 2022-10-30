@@ -15,6 +15,22 @@
   div#exampleModal {
     position: absolute !important;
   }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: #e5e6e7 !important;
+    color: #000000 !important;
+  }
+  input.btn.btn-primary {
+    background-color: #1d8a92 !important;
+    border: 1px solid #1d8a92 !important;
+  }
+  input.btn.btn-primary:hover {
+    background-color: transparent !important;
+    border: 1px solid #1d8a92 !important;
+    color: #1d8a92 !important;
+  }
+  i.fa-solid.fa-right-from-bracket:hover {
+    color: #ffffff !important;
+  }
   /*.bg-dark{
     z-index: 1000 !important;
     left: 77px !important;

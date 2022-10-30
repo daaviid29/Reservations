@@ -52,13 +52,13 @@
             return $this->image;
         }
 
-        public function getResources($tabla){
+        /*public function getResources($tabla){
             $sql = "SELECT * FROM $tabla";
 
             $actores = $this->dataQuery($sql);
 
             return $actores;
-        }
+        }*/
 
         public function crearResources(){
 
@@ -70,7 +70,7 @@
 
         }
 
-        public function borrarResource($id){
+        /*public function borrarResource($id){
             
             $sql = "DELETE FROM resources WHERE id = $id";
             
@@ -78,16 +78,16 @@
 
             return $borrarResources;
 
-        }
+        }*/
 
-        public function mostrarResource($id){
+        /*public function mostrarResource($id){
 
             $sql = "SELECT * FROM resources WHERE id = $id";
 
             $mostrarResources = $this->dataQuery($sql);
 
             return $mostrarResources;
-        }
+        }*/
 
         public function actualizarResource($id){
 

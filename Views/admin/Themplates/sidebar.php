@@ -26,6 +26,13 @@
          <span class="tooltip">Buscar</span>
       </li>
       <li>
+       <a href="#">
+         <i class="fa-solid fa-gauge"></i>
+         <span class="links_name">Inicio</span>
+       </a>
+       <span class="tooltip">Inicio</span>
+     </li>
+      <li>
        <a href="?controller=ResourcesController&action=mostrarResources">
          <i class="fa-regular fa-folder"></i>
          <span class="links_name">Recursos</span>
@@ -83,7 +90,7 @@
              <div class="job">Web designer</div>
            </div>
          </div>
-         <a class="fa-solid fa-outdent bx bx-log-out" id="log_out" href="?controller=UsersController&action=cerrarSesion"></a>
+         <a class="fa-solid fa-outdent bx bx-log-out" id="log_out" href="?controller=UsersController&action=cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a>
          <!--<i class='bx bx-log-out' id="log_out" ></i>-->
      </li>
     </ul>

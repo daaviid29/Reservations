@@ -17,7 +17,7 @@
                 $resources = new ResourcesModel();
 
                 // Almacenamos el resultado del método getResources en una variable data, en el índice resources, puesto que data es un array
-                $data['resources'] = $resources->getResources('resources');
+                $data['resources'] = $resources->get('resources');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
                 View::adminViews('admin-resources', $data);
@@ -66,7 +66,7 @@
 
                 // Accedemos al objeto resources que creamos anteriormente, más concretamente al método borrarResource() 
                 // (el cual recibe un parámetro que es el ID del recurso que queremos borrar)
-                $resources->borrarResource($_GET['id']);
+                $resources->delete('resources', $_GET['id']);
 
                 // Redirigimos al usuario al método mostrarResources donde mostrará todos los usuarios actuales, excepto el que acabamos de borrar puesto que ya no
                 // se encuentra en nuestra base de datos
@@ -92,7 +92,7 @@
                 // a modificar en uno de los recursos nos traerá a este método donde previsualizaremos su contenido, y en caso de querer actualizarlos podemos
                 // escribirlos de nuevo en los campos y luego darle al botón de actualizar y llamaría al método que tenemos más abajo para actualizarlos.
                 // A su vez, el método mostrarResource() recibe un parámetro que es el ID del recurso que queremos previsualizar
-                $data['getResource'] = $resources->mostrarResource($_GET['id']);
+                $data['getResource'] = $resources->get('resources', $_GET['id']);
 
                 // Construimos la vista con todos los includes donde mostraremos los datos del recurso seleccionado y le pasamos la variable data que son los datos
                 // almacenamos que recogimos anteriormente
@@ -154,11 +154,11 @@
 
                 // Almacenamos en la variable data más concretamente en el índice resources el resultado del método getResources que serían todos los recursos
                 // el método getResources() recibe un parámetro que es la tabla de la base de datos que consultará
-                $data['resources'] = $resources->getResources('resources');
+                $data['resources'] = $resources->get('resources');
 
                 // Almacenamos en la variable data más concretamente en el índice timeslots el resultado del método getTimeslots que serían todos los recursos
                 // el método getTimeslots() recibe un parámetro que es la tabla de la base de datos que consultará
-                $data['timeslots'] = $timeslots->getTimeslots('timeslots');
+                $data['timeslots'] = $timeslots->get('timeslots');
 
                 // Construimos la vista con todos los includes donde mostraremos los datos del recurso seleccionado y le pasamos la variable data que son los datos
                 // almacenamos que recogimos anteriormente
