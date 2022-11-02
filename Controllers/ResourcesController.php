@@ -188,12 +188,15 @@
                 // Recogemos el ID del timeslot ya que con esto podemos acceder posteriormente a su información
                 $idTimeSlot = $_REQUEST['timeslot-resource']; 
 
+                // Recogemos la fecha en la que se desea reservar el recurso
+                $date = $_REQUEST['fecha-reserva'];
+
                 // Recogeremos las notas/observaciones que el usuario puede poner a la hora de reservar el recurso
                 $remarks = SecurityModel::limpiar($_REQUEST['description-resource']);
 
                 // Almacenamos en la variable data más concretamente en el índice reservations el resultado del método setReservation este recibe como parámetro los
                 // valores que anteriormente hemos recogido y almacenado en variables locales, para hacer la insercción en la base de datos
-                $data['reservations'] = $resources->setReservation($idResource, $idUser, $idTimeSlot, $remarks);
+                $data['reservations'] = $resources->setReservation($idResource, $idUser, $idTimeSlot, $date, $remarks);
 
                 // Redirigimos al usuario al método resourcesUser donde mostrará todos los recursos que se pueden reservar
                 header("Location: ?controller=ResourcesController&action=resourcesUser");

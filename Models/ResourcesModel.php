@@ -77,14 +77,6 @@
             return $this->image;
         }
 
-        /*public function getResources($tabla){
-            $sql = "SELECT * FROM $tabla";
-
-            $actores = $this->dataQuery($sql);
-
-            return $actores;
-        }*/
-
         public function crearResources(){
 
             $sql = "INSERT INTO resources (name, description, location, image) VALUES('{$this->name}','{$this->description}','{$this->location}', '{$this->image}')";
@@ -94,25 +86,6 @@
             return $createResources;
 
         }
-
-        /*public function borrarResource($id){
-            
-            $sql = "DELETE FROM resources WHERE id = $id";
-            
-            $borrarResources = $this->dataManipulation($sql);
-
-            return $borrarResources;
-
-        }*/
-
-        /*public function mostrarResource($id){
-
-            $sql = "SELECT * FROM resources WHERE id = $id";
-
-            $mostrarResources = $this->dataQuery($sql);
-
-            return $mostrarResources;
-        }*/
 
         public function actualizarResource($id){
 
@@ -124,9 +97,9 @@
 
         }
 
-        public function setReservation($idResource, $idUser, $idTimeSlot, $remarks){
+        public function setReservation($idResource, $idUser, $idTimeSlot, $date, $remarks){
 
-            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, NOW(), '$remarks');";;
+            $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, '$date', '$remarks');";;
 
             $setReservation = $this->dataManipulation($sql);
 
