@@ -187,7 +187,7 @@
                 }else if(SecurityModel::getRol() == 0){
                     // Al ser un usuario Administrador (0), y el login también correcto pero vamos a redirigirlo a una vista donde tenga un botón de añadir recurso
                     // y los botones de eliminar y editar, es decir a la administración de la aplicación.
-                    header("Location: ?controller=ResourcesController&action=mostrarResources");
+                    header("Location: ?controller=UsersController&action=dashboard");
                 }else{
                     // Si no es ninguno de los otros usuarios para controlarlo, vamos a producir un error, es decir, en el controlador que llamámos no existe 
                     // ese método por lo que comprobará en index si no existe ese método donde debe de llevar al usuario, en este caso, index está configurado
@@ -200,6 +200,10 @@
                 // método cargado en la URL
                 header("Location: index.php");
             }
+        }
+
+        public function dashboard(){
+            View::adminViews('dashboard');
         }
 
         // Método para cerrar sesión, este es un método que tenemos en el controlado de Usuarios, pero que realmente lo que hace es llevarnos a la capa de seguridad

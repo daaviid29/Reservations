@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="Assets/css/style.css">
     <link rel="stylesheet" href="Assets/css/custom-admin.css">
+    <link rel="stylesheet" href="Assets/fullcalendar/css/main.css">
     <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
          <span class="tooltip">Buscar</span>
       </li>
       <li>
-       <a href="#">
+       <a href="?controller=UsersController&action=dashboard">
          <i class="fa-solid fa-gauge"></i>
          <span class="links_name">Inicio</span>
        </a>

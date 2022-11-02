@@ -1,4 +1,4 @@
-
+<title>Administración | Recursos</title>
 <div class="container mt-5">
         <div class="container-breadcum row">
           <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="mt-5 position-relative top-5 start-50 translate-middle text-center col-auto">
@@ -21,29 +21,41 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="index.php?controller=ResourcesController&action=crearResource" method="POST" enctype="multipart/form-data">
+                            <form action="index.php?controller=ResourcesController&action=crearResource" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label for="titulo-pelicula" class="form-label">Nombre del recurso</label>
-                                        <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="name-resources" required="required">
+                                        <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="name-resources" required>
+                                        <div class="invalid-feedback">
+                                            Nombre del recurso incorrecto
+                                        </div>
                                     </div>
                                     <div class="col-md-6 ms-auto">
                                         <label for="genero-pelicula" class="form-label">Localización del recurso</label>
-                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="location-resources" required="required">
+                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="location-resources" required>
+                                        <div class="invalid-feedback">
+                                            Localización del recurso incorrecta
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                 <label for="genero-pelicula" class="form-label">Descripción del recurso</label>
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resources"></textarea>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resources" required></textarea>
                                         <label for="floatingTextarea2"></label>
+                                        <div class="invalid-feedback">
+                                            Descripción del recurso incorrecta
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row mt-4 mt-2">
                                     <div class="input-group mb-4">
-                                        <input type="file" class="form-control" id="upload-files" name="file-resources" required="required" accept="image/*">
+                                        <input type="file" class="form-control" id="upload-files" name="file-resources" required accept="image/*">
                                         <label class="input-group-text" for="upload-files">Subir</label>
+                                        <div class="invalid-feedback">
+                                            Debes de subir una imagen
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -95,6 +107,27 @@
 </div>
 </section>
     <script>
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+        })()
+
         function confirmarBorrado(idResource){
             swal({
                 title: "¿Estás seguro?",

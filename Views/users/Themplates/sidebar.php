@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="Assets/css/style.css">
     <link rel="stylesheet" href="Assets/css/custom-admin.css">
+    <link rel="stylesheet" href="Assets/fullcalendar/css/main.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,18 +27,11 @@
          <span class="tooltip">Buscar</span>
       </li>
       <li>
-       <a href="?controller=ResourcesController&action=mostrarResources">
+       <a href="?controller=ResourcesController&action=resourcesUser">
          <i class="fa-regular fa-folder"></i>
          <span class="links_name">Recursos</span>
        </a>
        <span class="tooltip">Recursos</span>
-     </li>
-      <li>
-       <a href="?controller=UsersController&action=mostrarUsuarios">
-         <i class="fa-regular fa-user"></i>
-         <span class="links_name">Usuarios</span>
-       </a>
-       <span class="tooltip">Usuarios</span>
      </li>
      <!--<li>
        <a href="#">
@@ -47,26 +41,11 @@
        <span class="tooltip">Messages</span>
      </li>-->
      <li>
-       <a href="?controller=TimeSlotsController&action=mostrarTimeSlots">
-         <!--<i class='bx bx-pie-chart-alt-2' ></i>-->
-         <i class="fa-regular fa-clock"></i>
-         <span class="links_name">Time Slots</span>
-       </a>
-       <span class="tooltip">Time Slots</span>
-     </li>
-     <li>
        <a href="?controller=CalendarController&action=mostrarCalendario">
          <i class="fa-regular fa-calendar"></i>
          <span class="links_name">Calendario</span>
        </a>
        <span class="tooltip">Calendario</span>
-     </li>
-     <li>
-       <a href="?controller=ResourcesController&action=reservas">
-         <i class="fa-solid fa-list-check"></i>
-         <span class="links_name">Reservas</span>
-       </a>
-       <span class="tooltip">Reservas</span>
      </li>
      <li>
        <a href="#">

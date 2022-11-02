@@ -5,6 +5,7 @@
         border-radius: 50px;
     }
 </style>
+<title>Administración | Usuarios</title>
 <div class="container mt-5">
         <div class="container-breadcum row">
           <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="mt-5 position-relative top-5 start-50 translate-middle text-center col-auto">
@@ -27,48 +28,66 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="index.php?controller=UsersController&action=crearUsuario" method="POST" enctype="multipart/form-data">
+                            <form action="index.php?controller=UsersController&action=crearUsuario" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 <div class="row mt-3">
                                     <div class="col-md-6 ms-auto">
                                         <label for="genero-pelicula" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="realname-user" required="required">
+                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="realname-user" required>
+                                        <div class="invalid-feedback">
+                                            Selecciona un nombre válido
+                                        </div>
                                     </div>
                                     <div class="col-md-6 ms-auto">
                                         <label for="genero-pelicula" class="form-label">Apellidos</label>
                                         <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="lastname-user">
+                                        <div class="invalid-feedback">
+                                            Selecciona un apellido válido
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row mt-4">
                                     <div class="col-md-6">
                                     <label for="genero-pelicula" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="email-user">
+                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="email-user" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="genero-pelicula" class="form-label">Rol</label>
-                                        <select class="form-select" aria-label="Default select example" name="role-user">
-                                            <option value="-" disabled selected>-- Selecciona una opción --</option>
+                                        <select class="form-select" aria-label="Default select example" name="role-user" required>
+                                            <option value="" disabled selected>-- Selecciona una opción --</option>
                                             <option value="1">Usuario</option>
                                             <option value="0">Administrador</option>
                                         </select>
+                                        <div class="invalid-feedback">
+                                            Debes de elegir un rol de usuario
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row mt-4">
                                     <div class="col-md-6">
                                         <label for="titulo-pelicula" class="form-label">Nombre del usuario</label>
-                                        <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="username-user" required="required">
+                                        <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="username-user" required>
+                                        <div class="invalid-feedback">
+                                            Selecciona un nombre de usuario válido
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="genero-pelicula" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="password-user" required="required">
+                                        <input type="password" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="password-user" required>
+                                        <div class="invalid-feedback">
+                                            Elige una contraseña
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row mt-4 mt-2">
                                     <div class="input-group mb-4">
-                                        <input type="file" class="form-control" id="upload-files" name="file-user" required="required" accept="image/*">
+                                        <input type="file" class="form-control" id="upload-files" name="file-user" required accept="image/*">
                                         <label class="input-group-text" for="upload-files">Subir</label>
+                                        <div class="invalid-feedback">
+                                            Debes de subir una imágen
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -122,3 +141,24 @@
     </div>
 </div>
 </section>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>

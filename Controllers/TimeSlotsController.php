@@ -9,7 +9,7 @@
 
     class TimeSlotsController{
         
-        // Método para mostrar todos los timeslots SOLO PARA ADMINISTRADORES.
+        // Método para mostrar todos los TimeSlots SOLO PARA ADMINISTRADORES.
         public function mostrarTimeSlots(){
             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
             if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
@@ -29,7 +29,7 @@
             }
         }
 
-        // Método para crear timeslots SOLO PARA ADMINISTRADORES.
+        // Método para crear TimeSlots SOLO PARA ADMINISTRADORES.
         public function crearTimeSlot(){
             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
             if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
@@ -56,7 +56,7 @@
             }
         }
 
-        // Método para Borrar Recursos SOLO PARA ADMINISTRADORES.
+        // Método para Borrar TimeSlots SOLO PARA ADMINISTRADORES.
         public function borrarTimeSlot(){
             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
             if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
@@ -116,22 +116,31 @@
             // Requerimos la vista donde mostraremos el contenido
             //require_once 'Views/admin/admin-resources.php';
             View::adminViews('editar-resource', $data);
-        }
-
-        /*public function buscarActor(){
-            // Cargamos el modelo
-            require_once 'Models/ActoresModel.php';
-
-            // Crearemos el objeto sobre el que trabajaremos
-            $actor = new ActoresModel();
-
-            // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $actor = $actor->buscarActor($_REQUEST['busqueda']);
-
-            // Requerimos la vista donde mostraremos el contenido
-            require_once 'Views/listar-actores.php';
-        
         }*/
+
+        // Método para Buscar TimeSlots SOLO PARA ADMINISTRADORES.
+        public function buscarTimeSlot(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $timeslot = new TimeSlotsModel();
+
+                // Accedemos al objeto timeslot que creamos anteriormente, más concretamente al método buscarTimeSlot() 
+                // (el cual recibe un parámetro que es lo que queremos buscar en los recursos, puede ser el día de la semana, la hora de inicio o la hora de fin)
+                // los datos que recibamos en la consulta los vamos a guardar en un array, en el índice timelosts, para recorrerlos en la vista y poder
+                // mostrar todos los resultados.
+                $data['timeslots'] = $timeslot->buscarTimeSlot($_REQUEST['query']);
+
+                // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
+                View::adminViews('admin-timeslots', $data);
+
+            // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
+            // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }        
+        }
 
     }
 

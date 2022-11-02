@@ -1,4 +1,4 @@
-
+<title>Administración | Reservas</title>
 <div class="container mt-5">
         <div class="container-breadcum row">
           <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="mt-5 position-relative top-5 start-50 translate-middle text-center col-auto">

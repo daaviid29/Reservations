@@ -31,6 +31,13 @@
   i.fa-solid.fa-right-from-bracket:hover {
     color: #ffffff !important;
   }
+  button#btn-search {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+  }
+  p.dropdown-toggle.container-fluid.mt-3 {
+    color: #ffffff !important;
+  }
   /*.bg-dark{
     z-index: 1000 !important;
     left: 77px !important;

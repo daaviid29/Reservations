@@ -135,7 +135,7 @@
         }
 
         public function getAllReservations(){
-            $sql = "SELECT users.username, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, resources.name, reservations.date FROM reservations INNER JOIN resources ON reservations.idResource = resources.id INNER JOIN timeslots ON reservations.idTimeSlot = timeslots.id INNER JOIN users ON reservations.idUser = users.id;";
+            $sql = "SELECT resources.name AS title, users.username, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, resources.name, reservations.date FROM reservations INNER JOIN resources ON reservations.idResource = resources.id INNER JOIN timeslots ON reservations.idTimeSlot = timeslots.id INNER JOIN users ON reservations.idUser = users.id;";
 
             $getReservas = $this->dataQuery($sql);
 

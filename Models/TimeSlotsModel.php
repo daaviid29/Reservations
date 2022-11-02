@@ -99,6 +99,15 @@
 
         }*/
 
+        public function buscarTimeSlot($busqueda){
+            $sql =  "SELECT * FROM timeslots WHERE dayofweek LIKE '%$busqueda%' OR starttime LIKE '%$busqueda%' OR 	endtime LIKE '%$busqueda%';";
+
+            $timeslots = $this->dataQuery($sql);
+
+            return $timeslots;
+
+        }
+
     }
 
 
