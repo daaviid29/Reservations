@@ -111,6 +111,14 @@
             return $mostrarUser;
         }
 
+        public function buscarUser($busqueda){
+            $sql = "SELECT * FROM users WHERE username LIKE '$busqueda' OR email LIKE '$busqueda' OR realname LIKE '$busqueda' OR lastname LIKE '$busqueda' OR type LIKE '$busqueda';";
+
+            $busqueda = $this->dataQuery($sql);
+
+            return $busqueda;
+        }
+
         public function actualizarUser($id){
 
             $sql = "UPDATE users SET username = '{$this->username}', realname = '{$this->realname}', lastname = '{$this->lastname}', image = '{$this->image}' WHERE id = $id;";
@@ -123,7 +131,7 @@
 
         public function iniciarSesion(){
             
-            $sql = "SELECT id, type FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";
+            $sql = "SELECT id, type, realname, lastname, image FROM users WHERE username = '{$this->username}' AND  password = '{$this->password}';";
 
             $login = $this->dataQuery($sql);
             

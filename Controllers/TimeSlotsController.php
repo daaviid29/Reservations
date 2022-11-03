@@ -92,31 +92,32 @@
             // Requerimos la vista donde mostraremos el contenido
             //require_once 'Views/admin/editar-resource.php';
             View::adminViews('editar-resource', $data);
-        }
-
-        public function actualizarResource(){
-            // Cargamos el modelo
-            require_once 'Models/TimeSlotsModel.php';
-
-            // Crearemos el objeto sobre el que trabajaremos
-            $resources = new TimeSlotsModel();
-
-            // Recogemos los datos y utilizamos los setters para guardarlos
-            $resources->setName($_REQUEST['name-resources']);
-            $resources->setLocation($_REQUEST['location-resources']);
-            $resources->setDescription($_REQUEST['description-resources']);
-            $resources->setImage($_FILES['file-resources']['name']);
-
-            // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $data['updateResource'] = $resources->actualizarResource($_GET['id']);
-
-            // Redirigimos al usuario para mostrar el listado de usuarios
-            header("Location: ?controller=ResourcesController&action=mostrarResources");
-
-            // Requerimos la vista donde mostraremos el contenido
-            //require_once 'Views/admin/admin-resources.php';
-            View::adminViews('editar-resource', $data);
         }*/
+
+        // Método para Actualizar datos de un TimeSlot SOLO PARA ADMINISTRADORES.
+        public function actualizarTimeSlot(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $timeslot = new TimeSlotsModel();
+
+                // Recogemos los datos y utilizamos los setters para guardarlos
+                $timeslot->setDayofweek($_REQUEST['day-select']);
+                $timeslot->setStarttime($_REQUEST['starttime']);
+                $timeslot->setEndtime($_REQUEST['endtime']);
+
+                // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
+                $timeslot->actualizarTimeSlot($_GET['id']);
+
+                // Redirigimos al usuario al método mostrarTimeSlots donde mostrará todos los timeslots actuales
+                //header("Location: ?controller=TimeSlotsController&action=mostrarTimeSlots");
+            
+            // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a index.php puesto que en ese fichero está cargada 
+            //la vista por defecto es el login
+            }else if(!SecurityModel::haySesion()){
+                header("Location: index.php");
+            }
+        }
 
         // Método para Buscar TimeSlots SOLO PARA ADMINISTRADORES.
         public function buscarTimeSlot(){

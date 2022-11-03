@@ -17,7 +17,7 @@
                     <div class="d-flex">
                         <div class="">
                             <p class="mb-2 h6">Recursos</p>
-                            <h2 class="mb-1 ">253</h2>
+                            <h2 class="mb-1 "><?= $data['resources'][0]->registros ?></h2>
                             <!--<p class="mb-0 text-muted"><span class="text-success">(+0.35%) <i class="fe fe-arrow-up text-success"></i></span>Increase</p>-->
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="d-flex">
                         <div class="">
                             <p class="mb-2 h6">Usuarios</p>
-                            <h2 class="mb-1 ">253</h2>
+                            <h2 class="mb-1 "><?= $data['users'][0]->registros ?></h2>
                             <!--<p class="mb-0 text-muted"><span class="text-success">(+0.35%) <i class="fe fe-arrow-up text-success"></i></span>Increase</p>-->
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="d-flex">
                         <div class="">
                             <p class="mb-2 h6">Tramos Horarios</p>
-                            <h2 class="mb-1 ">253</h2>
+                            <h2 class="mb-1 "><?= $data['timeslots'][0]->registros ?></h2>
                             <!--<p class="mb-0 text-muted"><span class="text-success">(+0.35%) <i class="fe fe-arrow-up text-success"></i></span>Increase</p>-->
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="d-flex">
                         <div class="">
                             <p class="mb-2 h6">Total Reservas</p>
-                            <h2 class="mb-1 ">253</h2>
+                            <h2 class="mb-1 "><?= $data['reservations'][0]->registros ?></h2>
                             <!--<p class="mb-0 text-muted"><span class="text-success">(+0.35%) <i class="fe fe-arrow-up text-success"></i></span>Increase</p>-->
                         </div>
                     </div>

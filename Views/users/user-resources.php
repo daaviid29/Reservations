@@ -94,12 +94,8 @@
 
 <script>
     const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    var timeslot = <?php echo json_encode($data['timeslots']); ?>
-    
-    //console.log(timeslot);
-    
-
-    
+    var timeslot = <?php echo json_encode($data['timeslots']); ?> 
+    //console.log(allReservations);
 
     function changeTimeSlot(){
         let fechaComoCadena = document.getElementById('date-select').value;
@@ -107,7 +103,7 @@
         let numeroDia = new Date(fechaComoCadena).getDay();
         let nombreDia = dias[numeroDia];
         let timeslots = document.getElementById('timeslot');   
-        let dayofweekarray = [];     
+        let dayofweekarray = [];
 
         for(var i = 0; i < timeslot.length; i++){
             if(timeslot[i]['dayofweek'] == nombreDia){

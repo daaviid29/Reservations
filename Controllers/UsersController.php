@@ -180,6 +180,16 @@
                 // accederá al apartado de reservar recursos
                 SecurityModel::setRol($data['iniciarSesion'][0]->type);
 
+                // Accedemos al modelo SecurityModel más concretamente al método setImage() en el cual guardaremos la imagen del usuario para poder mostrarla
+                // posteriormente en la vista
+                SecurityModel::setImage($data['iniciarSesion'][0]->image);
+
+                // Accedemos al modelo SecurityModel más concretamente al método setRealname() en el cual guardaremos el nombre de usuario que inicia la sesión
+                SecurityModel::setRealname($data['iniciarSesion'][0]->realname);
+
+                // Accedemos al modelo SecurityModel más concretamente al método setLastname() en el cual guardaremos los apellidos del usuario que inició sesión
+                SecurityModel::setLastname($data['iniciarSesion'][0]->lastname);
+
                 // Comprobaremos si el tipo de usuario que es 1 = Usuario sin permisos de administrador 0 = Adminsitrador.
                 // Al ser usuario normal (1), y el login es correcto vamos a redirigirlo a una vista que no pueda editar ni añadir los recursos, pero si ver un listado
                 if(SecurityModel::getRol() == 1){
@@ -202,8 +212,30 @@
             }
         }
 
+        // Método para ver el total de registros, SOLO LOS ADMINISTRADORES DEL SISTEMA.
         public function dashboard(){
-            View::adminViews('dashboard');
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador YA QUE SOLO ÉL PUEDE REALIZAR
+            // ESTA ACCIÓN
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $user = new UsersModel();
+
+                // Almacenamos en la variable data, en cada índice el resultado del método getResults() el cual devuelve el total de registros que hay en la
+                // base de datos
+                $data['resources'] = $user->getResults('resources');
+                $data['users'] = $user->getResults('users');
+                $data['timeslots'] = $user->getResults('timeslots');
+                $data['reservations'] = $user->getResults('reservations');
+                
+                // Construimos la vista donde mostraremos los resultados
+                View::adminViews('dashboard', $data);
+
+            // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
+            // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
         }
 
         // Método para cerrar sesión, este es un método que tenemos en el controlado de Usuarios, pero que realmente lo que hace es llevarnos a la capa de seguridad
@@ -224,20 +256,28 @@
             }
         }
 
-        /*public function buscarActor(){
-            // Cargamos el modelo
-            require_once 'Models/ActoresModel.php';
+        // Método para buscar usuarios SOLO PARA ADMINISTRADORES
+        public function buscarUsuario(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador YA QUE SOLO ÉL PUEDE REALIZAR
+            // ESTA ACCIÓN
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $users = new UsersModel();
 
-            // Crearemos el objeto sobre el que trabajaremos
-            $actor = new ActoresModel();
+                // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
+                $data['users'] = $users->buscarUser($_REQUEST['query']);
 
-            // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $actor = $actor->buscarActor($_REQUEST['busqueda']);
+                // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
+                View::adminViews('admin-users', $data);
 
-            // Requerimos la vista donde mostraremos el contenido
-            require_once 'Views/listar-actores.php';
+            // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
+            // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
         
-        }*/
+        }
 
     }
 

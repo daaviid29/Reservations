@@ -17,7 +17,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="?controller=ResourcesController&action=reservarRecurso&id=<?= $resource->id; ?>" method="POST" enctype="multipart/form-data" id="form">
+                  <form action="?controller=ResourcesController&action=reservarRecurso&id=" method="POST" enctype="multipart/form-data" id="form">
                     <div class="row mt-3">
                       <div class="col-md-6">
                         <!--<label for="titulo-pelicula" class="form-label" name="">Día de la Reserva</label>
@@ -67,7 +67,7 @@
   const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
   let frm = document.getElementById('form');
   const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-  var resources = <?php echo json_encode($data['allReservations']); ?>  
+  //var resources = <?php echo json_encode($data['allReservations']); ?>  
   var timeslot = <?php echo json_encode($data['timeslots']); ?>
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -80,16 +80,28 @@
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek'
           },
-          events: resources,
+          events: [
+            <?php foreach($data['allReservations'] as $reserva): ?>
+              {
+                title: "<?php echo $reserva->title ?>",
+                start: "<?php echo $reserva->date?> <?php echo $reserva->starttime ?>",
+                end: "<?php echo $reserva->date?> <?php echo $reserva->endtime ?>",
+                //url: "",
+                //className: "NoDisponible",
+                //editable: true
+              },
+            <?php endforeach; ?>
+          ],
           dateClick: function(info){
             console.log(info);
             document.getElementById('start').value = info.dateStr;
-            myModal.show();    
+            changeTimeSlot();
+            myModal.show();
           }
         });
         calendar.render();
         frm.addEventListener('submit', function(e){
-          e.preventDefault();
+          //e.preventDefault();
           const dayofweek = document.getElementById('dayofweek').value;
           const timeslot = document.getElementById('timeslot').value;
           const remarks = document.getElementById('remarks').value;
@@ -108,7 +120,7 @@
     });
 
     function changeTimeSlot(){
-        let fechaComoCadena = document.getElementById('date-select').value;
+        let fechaComoCadena = document.getElementById('start').value;
         let diaSeleccionado = document.getElementById('dayofweek');
         let numeroDia = new Date(fechaComoCadena).getDay();
         let nombreDia = dias[numeroDia];
@@ -123,11 +135,11 @@
 
         //console.log(dayofweekarray);
 
-        /*document.getElementById("timeslot").innerHTML= "";
+        document.getElementById("timeslot").innerHTML= "";
         let option = document.createElement("option");
         option.text = "-- Selecciona una opción --";
         option.value = "selected" + " disabled";
-        timeslots.add(option);*/
+        timeslots.add(option);
 
         for(var i = 0; i < dayofweekarray.length; i++){
             let option = document.createElement("option");

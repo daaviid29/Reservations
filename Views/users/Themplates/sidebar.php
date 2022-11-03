@@ -56,14 +56,19 @@
      </li>
      <li class="profile">
          <div class="profile-details">
-           <img src="image/profile.jpg" alt="profileImg">
+           <img src="<?= SecurityModel::getImage();?>" alt="profileImg">
            <div class="name_job">
-             <div class="name">Prem Shahi</div>
-             <div class="job">Web designer</div>
+             <div class="name"><?= SecurityModel::getRealname();?>&nbsp;<?= SecurityModel::getLastname();?> </div>
+             <div class="job">
+                <?php if(SecurityModel::getRol() == 0):?>
+                  <?= "Administrador";?>
+                <?php else:?>
+                  <?= "Usuario";?>
+                <?php endif;?>
+             </div>
            </div>
          </div>
-         <!--<i class="fa-solid fa-outdent bx bx-log-out" id="log_out"></i>-->
-         <a class="fa-solid fa-outdent bx bx-log-out" id="log_out" href="?controller=UsersController&action=cerrarSesion"></a>
+         <a class="fa-solid fa-outdent bx bx-log-out" id="log_out" href="?controller=UsersController&action=cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a>
          <!--<i class='bx bx-log-out' id="log_out" ></i>-->
      </li>
     </ul>

@@ -24,6 +24,30 @@ class SecurityModel{
         return $_SESSION["rolUsuario"];
     }
 
+    public function setImage($image){
+        $_SESSION["userImage"] = $image;
+    }
+
+    public function getImage(){
+        return $_SESSION["userImage"];
+    }
+
+    public function setRealname($realname){
+        $_SESSION["realname"] = $realname;
+    }
+
+    public function getRealname(){
+        return $_SESSION["realname"];
+    }
+
+    public function setLastname($lastname){
+        $_SESSION["lastname"] = $lastname;
+    }
+
+    public function getLastname(){
+        return $_SESSION["lastname"];
+    }
+
     // Cierra una sesión y elimina el id del usuario
     public static function cerrarSesion() {
         session_destroy();

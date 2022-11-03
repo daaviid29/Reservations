@@ -51,8 +51,8 @@
         }
 
         public function getTimeslots($tabla){
-            $sql = "SELECT * FROM $tabla";
-
+            $sql = "SELECT * FROM $tabla ORDER BY id, dayofweek, starttime, endtime ASC;";
+            
             $timeslots = $this->dataQuery($sql);
 
             return $timeslots;
@@ -87,17 +87,19 @@
             $mostrarResources = $this->dataQuery($sql);
 
             return $mostrarResources;
-        }
-
-        public function actualizarResource($id){
-
-            $sql = "UPDATE resources SET name = '{$this->name}', description = '{$this->description}', location = '{$this->location}', image = '{$this->image}' WHERE id = $id;";
-
-            $actualizarResource = $this->dataManipulation($sql);
-
-            return $actualizarResource;
-
         }*/
+
+        public function actualizarTimeSlot($id){
+
+            $sql = "UPDATE timeslots SET dayofweek = '{$this->dayofweek}', starttime = '{$this->starttime}', endtime = '{$this->endtime}' WHERE id = $id;";
+
+            echo $sql;
+
+            //$actualizarTimeSlot = $this->dataManipulation($sql);
+
+            return $actualizarTimeSlot;
+
+        }
 
         public function buscarTimeSlot($busqueda){
             $sql =  "SELECT * FROM timeslots WHERE dayofweek LIKE '%$busqueda%' OR starttime LIKE '%$busqueda%' OR 	endtime LIKE '%$busqueda%';";

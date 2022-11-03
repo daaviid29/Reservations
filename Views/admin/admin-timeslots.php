@@ -8,15 +8,15 @@
                   </ol>
           </div>
         </div>
-
+          <!-- FORM ADD NEW TIMESLOT -->
         <div class="container">
             <div class="row">
                 <div class="col-md-auto mb-2">
-                <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#examplemodal">
                     <i class="fas fa-plus fa-fw" aria-hidden="true"></i>
-                    <span class="d-none d-xl-inline-block">Nuevo</span>
+                    <span class="d-none d-xl-inline-block">Nuevo TimeSlot</span>
                 </a>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false">
+                <div class="modal fade" id="examplemodal" tabindex="-1" aria-labelledby="examplemodalLabel" aria-hidden="true" data-bs-keyboard="false">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -44,7 +44,7 @@
                                 <div class="row mt-3">
                                     <label for="validationCustom04" class="form-label">Día de la Semana</label>
                                     <select class="form-select" id="validationCustom04" name="dayofweek-timeslots" required>
-                                    <option selected disabled value="">-- Selecciona un día de la semana --</option>
+                                        <option selected disabled value="">-- Selecciona un día de la semana --</option>
                                         <option value="Lunes">Lunes</option>
                                         <option value="Martes">Martes</option>
                                         <option value="Miercoles">Miercoles</option>
@@ -93,9 +93,9 @@
                     </form>
                 </div>
                 <div class="col-sm-auto text-right mb-2">
-                    <button type="button" class="btn btn-light">
-                        <i class="fas fa-filter fa-fw"></i> Filtros
-                    </button>
+                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                        <i class="fa-solid fa-trash"></i> Eliminar TimeSlots
+                    </a>
                 </div>
             </div>
         </div>
@@ -112,8 +112,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($data['timeslots'] as $timeslot): ?>
-                
+                <?php foreach($data['timeslots'] as $timeslot): ?>              
                 <tr class="clickableRow">
                     <th scope="row"><?= $timeslot->id; ?></th>
                     <td><?= $timeslot->dayofweek ?></td>
@@ -126,11 +125,61 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="?controller=TimeSlotsController&action=borrarTimeSlot&id=<?= $timeslot->id ?>"><i class="fa-solid fa-trash"></i>&nbsp; Borrar</a></li>
-                                <li><a class="dropdown-item" href="?controller=TimeSlotsController&action=mostrarTimeSlote&id=<?= $timeslot->id ?>"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="getInfo(<?= $timeslot->id ?>);"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</a></li>
                                 <!--<li><hr class="dropdown-divider"></li>-->                           
                             </ul>
                         </div>
                     </td>
+                    <div>
+        <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodal" aria-hidden="true" data-bs-keyboard="false">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editmodal" class="text-start">Editar Recurso</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="?controller=TimeSlotsController&action=actualizarTimeSlot&id=<?= $timeslot->id ?>" method="POST" enctype="multipart/form-data" id="form">
+                     <div class="row mt-3">
+                                    <label for="day-select" class="form-label">Día de la Semana</label>
+                                    <select class="form-select" id="day-select" name="day-select" required>
+                                        <option selected disabled value="">-- Selecciona un día de la semana --</option>
+                                        <option value="Lunes">Lunes</option>
+                                        <option value="Martes">Martes</option>
+                                        <option value="Miercoles">Miercoles</option>
+                                        <option value="Jueves">Jueves</option>
+                                        <option value="Viernes">Viernes</option>
+                                        <option value="Sábado" disabled>Sábado</option>
+                                        <option value="Domingo" disabled>Domingo</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecciona un día válido
+                                    </div>
+                                </div>
+                                <div class="row mt-4 mb-5">
+                                    <div class="col-md-6">
+                                        <label for="starttime" class="form-label">Tiempo de Inicio</label>
+                                        <input type="time" class="form-control" id="starttime" aria-describedby="emailHelp" name="starttime" required>
+                                        <div class="invalid-feedback">
+                                            Selecciona una hora de inicio válida
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ms-auto">
+                                        <label for="endtime" class="form-label">Tiempo de Finalización</label>
+                                        <input type="time" class="form-control" id="endtime" aria-describedby="emailHelp" name="endtime" required>
+                                        <div class="invalid-feedback">
+                                            Selecciona una hora de finalización válida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-4">
+                                    <input type="submit" class="btn btn-primary" value="Modificar timeslot">
+                                </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>  
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -139,6 +188,55 @@
 </div>
 </section>
 <script>
+    const myModal = new bootstrap.Modal(document.getElementById('editmodal'));
+    const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    var daySelect = document.getElementById('day-select');
+    var starttime = document.getElementById('starttime');
+    var endtime = document.getElementById('endtime');
+    var timeSlots = <?php echo json_encode($data['timeslots']); ?> 
+
+    console.log(timeSlots);
+    console.log(dias);
+
+    function getInfo(idtimeslot){        
+        let infoTimeSlot = [];
+        let days = [];
+
+        for(var i = 0; i < timeSlots.length; i++){
+            if(timeSlots[i]['id'] == idtimeslot){
+                infoTimeSlot.push(timeSlots[i]);
+            }
+        }
+
+        for(var i = 0; i < dias.length; i++){
+            if(dias[i] != infoTimeSlot[0]['dayofweek']){
+                days.push(dias[i]);
+            }
+        }
+
+        console.log(infoTimeSlot);
+
+        daySelect.innerHTML= "";
+        let option = document.createElement("option");
+        option.text = infoTimeSlot[0]['dayofweek'];
+        option.value = infoTimeSlot[0]['dayofweek'];
+        daySelect.add(option);
+
+        for(var i = 0; i < days.length; i++){
+            let option = document.createElement("option");
+            option.text = days[i];
+            option.value = days[i];
+            daySelect.add(option);
+        }
+        
+        starttime.value = infoTimeSlot[0]['starttime'];
+        endtime.value = infoTimeSlot[0]['endtime'];
+       
+
+        myModal.show();
+    
+    }
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
     'use strict'

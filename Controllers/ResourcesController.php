@@ -160,6 +160,8 @@
                 // el método getTimeslots() recibe un parámetro que es la tabla de la base de datos que consultará
                 $data['timeslots'] = $timeslots->get('timeslots');
 
+                //$data['reservations'] = $timeslots->get('reservations');
+
                 // Construimos la vista con todos los includes donde mostraremos los datos del recurso seleccionado y le pasamos la variable data que son los datos
                 // almacenamos que recogimos anteriormente
                 View::userViews('user-resources', $data);
@@ -227,20 +229,49 @@
             }
         }
 
-        /*public function buscarActor(){
-            // Cargamos el modelo
-            require_once 'Models/ActoresModel.php';
+        // Método para Borrar todas las reservas que se han realizado en la aplicación SOLO PARA ADMINISTRADORES.
+        public function deleteAllReservations(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $resources = new ResourcesModel();
 
-            // Crearemos el objeto sobre el que trabajaremos
-            $actor = new ActoresModel();
+                // Accedemos al objeto resources que creamos anteriormente, más concretamente al método getAllReservations() 
+                // el cual borrará todas las reservas que se hayan hecho en nuestra aplicación, por ello no recibe ningun parámetro
+                $resources->deleteAllReservations();
 
-            // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $actor = $actor->buscarActor($_REQUEST['busqueda']);
+                // Hacemos una redirección para que el usuario no pueda volver a ejecutar dicho método y que le muestre el listado de reservas (el cual debería de)
+                // estar vacío
+                header("Location: ?controller=ResourcesController&action=reservas");
 
-            // Requerimos la vista donde mostraremos el contenido
-            require_once 'Views/listar-actores.php';
-        
-        }*/
+            // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
+            // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
+        }
+
+        // Método para buscar un recurso SOLO PARA ADMINISTRADORES.
+        public function buscarResource(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $resources = new ResourcesModel();
+
+                // Almacenamos en la variable data más concretamente en el índice resources el resultado de la búsqueda.
+                $data['resources'] = $resources->buscarResource($_REQUEST['query']);
+
+                // Construimos la vista donde mostraremos el contenido, para ello, le pasamos la variable data que es la que almacena el resultado de la busqueda
+                View::adminViews('admin-resources', $data);
+
+            // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
+            // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
+        }
 
     }
 

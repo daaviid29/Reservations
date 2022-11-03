@@ -92,6 +92,15 @@
             return $delete;
         }
 
+        public function getResults($tabla){
+            
+            $sql = "SELECT COUNT(*) AS registros FROM $tabla";
+            
+            $result = $this->dataQuery($sql);
+
+            return $result;
+        }
+
     }
 
 ?>

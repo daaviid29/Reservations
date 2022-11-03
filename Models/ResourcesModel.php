@@ -97,6 +97,14 @@
 
         }
 
+        public function buscarResource($busqueda){
+            $sql = "SELECT * FROM resources WHERE name LIKE '%$busqueda%' OR description LIKE '%$busqueda%' OR location LIKE '%$busqueda%';";
+
+            $resource = $this->dataQuery($sql);
+
+            return $resource;
+        }
+
         public function setReservation($idResource, $idUser, $idTimeSlot, $date, $remarks){
 
             $sql = "INSERT INTO reservations (idResource, idUser, idTimeSlot, date, remarks) VALUES ($idResource, $idUser, $idTimeSlot, '$date', '$remarks');";;
@@ -108,11 +116,20 @@
         }
 
         public function getAllReservations(){
-            $sql = "SELECT resources.name AS title, users.username, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, resources.name, reservations.date FROM reservations INNER JOIN resources ON reservations.idResource = resources.id INNER JOIN timeslots ON reservations.idTimeSlot = timeslots.id INNER JOIN users ON reservations.idUser = users.id;";
+            $sql = "SELECT resources.name AS title, users.username, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, resources.name, reservations.date, timeslots.starttime AS start, timeslots.endtime AS end FROM reservations INNER JOIN resources ON reservations.idResource = resources.id INNER JOIN timeslots ON reservations.idTimeSlot = timeslots.id INNER JOIN users ON reservations.idUser = users.id;";
 
             $getReservas = $this->dataQuery($sql);
 
             return $getReservas;
+
+        }
+
+        public function deleteAllReservations(){
+            $sql = "DELETE FROM reservations;";
+            
+            $deleteAll = $this->dataManipulation($sql);
+
+            return $deleteAll;
 
         }
 

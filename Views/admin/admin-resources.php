@@ -9,64 +9,85 @@
           </div>
         </div>
 
-        <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fas fa-plus fa-fw" aria-hidden="true"></i>
-                    <span class="d-none d-xl-inline-block">Nuevo</span>
-                </a>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo recurso</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="index.php?controller=ResourcesController&action=crearResource" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <label for="titulo-pelicula" class="form-label">Nombre del recurso</label>
-                                        <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="name-resources" required>
-                                        <div class="invalid-feedback">
-                                            Nombre del recurso incorrecto
-                                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-auto mb-2">
+                    <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fas fa-plus fa-fw" aria-hidden="true"></i>
+                                <span class="d-none d-xl-inline-block">Nuevo Recurso</span>
+                            </a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false">
+                                <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo recurso</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="col-md-6 ms-auto">
-                                        <label for="genero-pelicula" class="form-label">Localización del recurso</label>
-                                        <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="location-resources" required>
-                                        <div class="invalid-feedback">
-                                            Localización del recurso incorrecta
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                <label for="genero-pelicula" class="form-label">Descripción del recurso</label>
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resources" required></textarea>
-                                        <label for="floatingTextarea2"></label>
-                                        <div class="invalid-feedback">
-                                            Descripción del recurso incorrecta
-                                        </div>
-                                    </div>
-                                </div>
+                                    <div class="modal-body">
+                                        <form action="index.php?controller=ResourcesController&action=crearResource" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <label for="titulo-pelicula" class="form-label">Nombre del recurso</label>
+                                                    <input type="text" class="form-control" id="titulo-pelicula" aria-describedby="emailHelp" name="name-resources" required>
+                                                    <div class="invalid-feedback">
+                                                        Nombre del recurso incorrecto
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 ms-auto">
+                                                    <label for="genero-pelicula" class="form-label">Localización del recurso</label>
+                                                    <input type="text" class="form-control" id="genero-pelicula" aria-describedby="emailHelp" name="location-resources" required>
+                                                    <div class="invalid-feedback">
+                                                        Localización del recurso incorrecta
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                            <label for="genero-pelicula" class="form-label">Descripción del recurso</label>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description-resources" required></textarea>
+                                                    <label for="floatingTextarea2"></label>
+                                                    <div class="invalid-feedback">
+                                                        Descripción del recurso incorrecta
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <div class="row mt-4 mt-2">
-                                    <div class="input-group mb-4">
-                                        <input type="file" class="form-control" id="upload-files" name="file-resources" required accept="image/*">
-                                        <label class="input-group-text" for="upload-files">Subir</label>
-                                        <div class="invalid-feedback">
-                                            Debes de subir una imagen
-                                        </div>
+                                            <div class="row mt-4 mt-2">
+                                                <div class="input-group mb-4">
+                                                    <input type="file" class="form-control" id="upload-files" name="file-resources" required accept="image/*">
+                                                    <label class="input-group-text" for="upload-files">Subir</label>
+                                                    <div class="invalid-feedback">
+                                                        Debes de subir una imagen
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="modal-footer mt-2">
+                                                <input type="submit" class="btn btn-primary" value="Añadir recurso">
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                
-                                <div class="modal-footer mt-2">
-                                    <input type="submit" class="btn btn-primary" value="Añadir recurso">
                                 </div>
-                            </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                            </div>
+                </div>
+                <div class="col-sm mb-2">
+                    <form class="input-group" action="?controller=ResourcesController&action=buscarResource" method="POST" enctype="multipart/form-data">
+                        <input class="form-control" type="text" name="query" value="" autocomplete="off" placeholder="Buscar">
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-secondary" id="btn-search">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="col-sm-auto text-right mb-2">
+                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                        <i class="fa-solid fa-trash"></i> Eliminar Recursos
+                    </a>
+                </div>
+            </div>
+        </div>
     <div class="table-responsive">
         <table class="table table-hover table-light mt-3 text-center">
             <thead>
