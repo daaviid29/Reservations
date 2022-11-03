@@ -10,12 +10,14 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+     <link rel="icon" type="image/jpg" href="Assets/Brand/Logo PNG/Favicon.png"/>
     </head>
     <body>
   <div class="sidebar">
     <div class="logo-details">
-      <i class='bx bxl-c-plus-plus icon'></i>
-        <div class="logo_name">I.E.S Celia Viñas</div>
+      <!--<i class='bx bxl-c-plus-plus icon'></i>-->
+      <img class="icon" src="Assets/Brand/Logo PNG/Favicon.png" alt="Logo I.E.S Celia Viñas" width="40px" height="40px">
+        <div class="logo_name">&nbsp;&nbsp;I.E.S Celia Viñas</div>
         <!--<i class='bx bx-menu' id="btn" ></i>-->
         <i class="fa-solid fa-bars" id="btn"></i>
     </div>

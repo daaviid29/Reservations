@@ -20,7 +20,7 @@
                 <div class="col-md-auto mb-2">
                     <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fas fa-plus fa-fw" aria-hidden="true"></i>
-                                <span class="d-none d-xl-inline-block">Nuevo</span>
+                                <span class="d-none d-xl-inline-block">Nuevo Usuario</span>
                             </a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false">
                                 <div class="modal-dialog modal-lg">
@@ -141,7 +141,13 @@
                     <td><?= $user->realname ?>&nbsp;<?= $user->lastname ?></td>
                     <td><?= $user->email ?></td>
                     <td><?= $user->username ?></td>
-                    <td><?= $user->type ?></td>
+                    <td>
+                        <?php if($user->type == 0): ?>
+                            <?= "Administrador"; ?>
+                        <?php else: ?>
+                            <?= "Usuario"; ?>
+                        <?php endif; ?>
+                    </td>
                     <td>
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
