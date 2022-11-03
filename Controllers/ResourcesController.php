@@ -273,6 +273,27 @@
             }
         }
 
+        // Método para saber las reservas de cada Usuario
+        public function getMyReservations(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && (SecurityModel::getRol() == 0 || SecurityModel::getRol() == 1)){
+                // Crearemos el objeto sobre el que trabajaremos
+                $resources = new ResourcesModel();
+
+                // Almacenamos en la variable data más concretamente en el índice resources el resultado de la búsqueda.
+                $data['myreservations'] = $resources->getReservas(SecurityModel::getUserId());
+
+                // Construimos la vista donde mostraremos el contenido, para ello, le pasamos la variable data que es la que almacena el resultado de la busqueda
+                View::userViews('user-myreservas', $data);
+
+            // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
+            // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
+        }
+
     }
 
 ?>

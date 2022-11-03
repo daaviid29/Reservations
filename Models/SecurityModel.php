@@ -16,6 +16,10 @@ class SecurityModel{
         $_SESSION["idUsuario"] = $id;
     }
 
+    public static function getUserId(){
+        return $_SESSION["idUsuario"];
+    }
+
     public function setRol($rol){
         $_SESSION["rolUsuario"] = $rol;
     }

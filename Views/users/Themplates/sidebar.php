@@ -48,6 +48,13 @@
        <span class="tooltip">Calendario</span>
      </li>
      <li>
+       <a href="?controller=ResourcesController&action=getMyReservations">
+        <i class="fa-solid fa-cloud"></i>
+         <span class="links_name">Mis Reservas</span>
+       </a>
+       <span class="tooltip">Mis Reservas</span>
+     </li>
+     <li>
        <a href="#">
          <i class="fa-solid fa-gear"></i>
          <span class="links_name">Configuración</span>
