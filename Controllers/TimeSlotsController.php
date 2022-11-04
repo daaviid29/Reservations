@@ -17,10 +17,11 @@
                 $timeslots = new TimeSlotsModel();
 
                 // Almacenamos el resultado del método getTimeslots en una variable data, en el índice timeslots, puesto que data es un array
-                $data['timeslots'] = $timeslots->getTimeslots('timeslots');
+                $data['timeslots'] = $timeslots->get('timeslots');
+                $paginacion = $timeslots->Paginacion('timeslots');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
-                View::adminViews('admin-timeslots', $data);
+                View::adminViews('admin-timeslots', $data, $paginacion);
 
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a index.php puesto que en ese fichero está cargada 
             //la vista por defecto es el login
@@ -65,7 +66,7 @@
 
                 // Accedemos al objeto timeslot que creamos anteriormente, más concretamente al método borrarTimeSlot() 
                 // (el cual recibe un parámetro que es el ID del recurso que queremos borrar)
-                $timeslot->borrarTimeSlot($_GET['id']);
+                $timeslot->delete('timeslots', $_GET['id']);
 
                 // Redirigimos al usuario al método mostrarTimeSlots donde mostrará todos los timeslots actuales, excepto el que acabamos de borrar puesto que ya no
                 // se encuentra en nuestra base de datos

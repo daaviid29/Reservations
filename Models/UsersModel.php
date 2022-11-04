@@ -74,14 +74,6 @@
             return $this->image;
         }
 
-        public function getUsers($tabla){
-            $sql = "SELECT * FROM $tabla";
-
-            $usuarios = $this->dataQuery($sql);
-
-            return $usuarios;
-        }
-
         public function crearUser(){
 
             $sql = "INSERT INTO users (username, email, password, realname, lastname, image, type) VALUES('{$this->username}', '{$this->email}', '{$this->password}','{$this->realname}', '{$this->lastname}', '{$this->image}', '{$this->rol}')";
@@ -89,16 +81,6 @@
             $crearUsuario = $this->dataManipulation($sql);
 
             return $crearUsuario;
-
-        }
-
-        public function borrarUser($id){
-            
-            $sql = "DELETE FROM users WHERE id = $id";
-            
-            $borrarUser = $this->dataManipulation($sql);
-
-            return $borrarUser;
 
         }
 

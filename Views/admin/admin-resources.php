@@ -124,6 +124,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php $paginacion->render(); ?>
     </div>
 </div>
 </section>
@@ -170,4 +171,6 @@
                 }
             });
         }
+
+
     </script>

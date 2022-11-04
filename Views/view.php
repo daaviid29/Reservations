@@ -4,7 +4,7 @@ class View{
     
     private $directorio = "";
 
-    public static function adminViews($viewName, $data = null) {
+    public static function adminViews($viewName, $data = null, $paginacion = null) {
         $directorioThemplates = "admin/Themplates/";
         $directorio = "admin/";
         

@@ -70,16 +70,6 @@
 
         }
 
-        public function borrarTimeSlot($id){
-            
-            $sql = "DELETE FROM timeslots WHERE id = $id";
-            
-            $borrarTimeSlot = $this->dataManipulation($sql);
-
-            return $borrarTimeSlot;
-
-        }
-
         /*public function mostrarResource($id){
 
             $sql = "SELECT * FROM resources WHERE id = $id";

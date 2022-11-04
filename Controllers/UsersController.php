@@ -17,10 +17,11 @@
                 $users = new UsersModel();
 
                 // Almacenamos el resultado del método getUsers en una variable data, en el índice users, puesto que data es un array
-                $data['users'] = $users->getUsers('users');
+                $data['users'] = $users->get('users');
+                $paginacion = $users->Paginacion('users');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
-                View::adminViews('admin-users', $data);
+                View::adminViews('admin-users', $data, $paginacion);
 
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
             // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
@@ -72,7 +73,7 @@
 
                 // Accedemos al Objeto que hemos creado anteriormente, más concretamente al método borrarUser(), este método tiene que recibir un parámetro que
                 // es el ID del usuario que quieras borrar puesto que solo queremos borrar uno, no todos los de la base de datos
-                $users->borrarUser($_GET['id']);
+                $users->delete('users', $_GET['id']);
 
                 // Por último, redirigimos al usuario para mostrar el listado de usuarios
                 header("Location: ?controller=UsersController&action=mostrarUsuarios");
@@ -101,7 +102,7 @@
                 // a modificar en uno de los usuarios nos traerá a este método donde previsualizaremos su contenido, y en caso de querer actualizarlos podemos
                 // escribirlos de nuevo en los campos y luego darle al botón de actualizar y llamaría al método que tenemos más abajo para actualizarlos.
                 // A su vez, el método mostrarUser() recibe un parámetro que es el ID del recurso que queremos previsualizar
-                $data['getUser'] = $users->mostrarUser($_GET['id']);
+                $data['getUser'] = $users->get('users', $_GET['id']);
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
                 View::adminViews('editar-user', $data);

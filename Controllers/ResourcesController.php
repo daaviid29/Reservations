@@ -18,9 +18,10 @@
 
                 // Almacenamos el resultado del método getResources en una variable data, en el índice resources, puesto que data es un array
                 $data['resources'] = $resources->get('resources');
+                $paginacion = $resources->Paginacion('resources');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
-                View::adminViews('admin-resources', $data);
+                View::adminViews('admin-resources', $data, $paginacion);
            
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a index.php puesto que en ese fichero está cargada 
             //la vista por defecto es el login
@@ -216,10 +217,11 @@
                 // una consula con INNER JOIN donde junta todas las tablas y devuelve (Usuario, Día de la semana, Fecha, Tramo horario y Nombre del recurso)
                 // para que un administrador pueda saber que usuario reservó cada recurso, en que fecha, timeslot y que recurso fue el de la reserva.
                 $data['allReservations'] = $resources->getAllReservations();
+                $paginacion = $resources->Paginacion('resources');
 
                 // Construimos la vista con todos los includes donde mostraremos (Usuario, Día de la semana, Fecha, Tramo horario y Nombre del recurso) de cada una de
                 // las reservas que se han realizado mostrando los datos anteriormente indicados.
-                View::adminViews('admin-reservas', $data);
+                View::adminViews('admin-reservas', $data, $paginacion);
 
             // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
             // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método

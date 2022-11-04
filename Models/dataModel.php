@@ -2,6 +2,8 @@
 
     // Cargamos el fichero config donde tenemos la conexión para poder acceder a la base de datos
     require_once 'Config/Config.php';
+    // Cargamos el autoload de composer
+    require_once 'vendor/autoload.php';
 
     Class dataModel{
         // Atributo de la clase dataModel (Solo tiene un atributo que es DB ya que esta clase se encarga de instanciar la conexión, para usarla en el resto de models)
@@ -56,7 +58,7 @@
             // por último, devolvemos el número de filas que han sido afectadas, en la consulta.
             return $this->db->affected_rows;
         }
-
+        /*
         // Método Get para la obtención de datos de las tablas (Recibe 2 parámetros), tabla = nombre de la tabla donde se desea consultar, id = es un parámetro
         // opcional, puede ir o no en el método, no es obligatorio que vaya.
         public function get($tabla, $id = null){
@@ -79,7 +81,73 @@
             }
             // Devolvemos el resultado de la variable result, ya sea con los datos de toda la tabla o con los de un registro en concreto.
             return $result;
+        }*/
+
+        public function get($tabla, $id = null){
+            // Comprobamos si la variable id es null, en caso de que sea null, lo que queremos es devolver el resultado de la tabla completa. paginada
+            if(is_null($id)){
+                // Creamos una variable SQL en la cual almacenaremos la consulta que queremos ejecutar
+                $sql = "SELECT * FROM $tabla";
+                // en la variable result guardamos el resultado del método dataQuery el cual recibe un parámetro que es la consulta que queremos ejecutar.
+                $result = $this->dataQuery($sql);
+                // en la variable numero_elementos almacenaremos el NÚMERO TOTAL DE REGISTROS que devuelve la consulta anterior
+                $numero_elementos = count($result);
+                // en la variable numero_elementos_pagina indicaremos cuantos registros por página queremos mostrar en este caso son 50 registros
+                $numero_elementos_pagina = 50;
+                // Instanciamos el objeto Zebra_Pagination el cual lo hemos descargado anteriormente por composer y se encuentra en la carpeta vendor
+                // todo lo necesario de esta librería
+                $pagination = new Zebra_Pagination();
+                // accedemos al objeto pagination que creamos anteriormente y le vamos a decir el número de elementos totales que tenemos en la primera consutla
+                $pagination->records($numero_elementos);
+                // accedemos al objeto pagination que creamos anteriormente y le vamos a decir el número de elementos que queremos mostrar por página
+                $pagination->records_per_page($numero_elementos_pagina);
+                // almacenamos en una variable page el número de actual de la página en la que nos encontramos, en la vista
+                // por ejemplo, si le hemos dado a siguiente ya no sería la página 1 si no la página 2 por ello necesitamos almacenarlo para saber en que página
+                // estamos en cada momento e ir descontando los elementos que se mostraron en la págnia anterior
+                $page = $pagination->get_page();
+                // almacenamos en una variable empezar en el número donde debe empezar a mostrar los registros, esto se hace por que si ya mostramos los
+                // 50 primeros en la primera página pues que en la segunda página se muestre del 51 en adelante este inclusive
+                $empezar = (($page - 1) * $numero_elementos_pagina);
+                // Por último consutrimos la consulta final que vamos a ejecutar y a enviar al controlador en esta caso con LIMIT decimos con la variable empeza
+                // desde que registro debe empezar a mostrar y con la variable numero_elementos_pagina decimos hasta donde, el cual siempre es fijo por que es 50
+                // ya que lo definimos anteriormente
+                $consulta_final = "SELECT * FROM $tabla LIMIT $empezar,  $numero_elementos_pagina;";
+                // Almacenamos en una variable query el resultado de la consulta de arriba y será esto lo que devolvamos al controlador para que pueda ser
+                // mostrado en la vista
+                $query = $this->dataQuery($consulta_final);
+            }else{
+                // Si la variable id no está vacía, es que queremos mostrar un único registro en la base de datos para ello, creamos una variable SQL en 
+                // la cual almacenaremos la consulta que queremos ejecutar
+                $sql = "SELECT * FROM $tabla WHERE id = $id";
+                // en la variable result que creamos e inicializamos anteriormente guardamos el resultado del método dataQuery el cual recibe un parámetro
+                // que es la consulta que vamos ejecutar.
+                $query = $this->dataQuery($sql);
+            }
+            // Devolvemos el resultado de la variable querya, ya sea con los datos de toda la tabla (con la paginación) o de un registro en concreto
+            return $query;
         }
+
+        public function Paginacion($tabla){
+            // Realizamos la consulta que muestra todos los datos de la tabla
+            $consulta = $this->dataQuery("SELECT * FROM $tabla");
+
+            // Contamos la cantidad de elementos que tene esa consulta ya que puede variar segun creemos o eliminemos registros y de la tabla en la que se consulte
+            $numero_elementos = count($consulta);
+
+            // Elegimos la cantidad de elementos que queremos mostrar por cada página
+            $numero_elementos_pagina = 50;
+
+            // Creamos un objeto Zebra_Pagination que será el que nos cree la paginación
+            $pagination = new Zebra_Pagination();
+
+            // Obtenemos el número total de elementos a paginar
+            $pagination->records($numero_elementos);
+
+            // Número de elementos por página
+            $pagination->records_per_page($numero_elementos_pagina);
+        
+            return $pagination;
+        }   
 
         // Método delete para el eliminado de un registro en la base de datos, (Recibe 2 parámetros), tabla = nombre de la tabla donde se desea consultar,
         // id = es un parámetro.

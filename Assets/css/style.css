@@ -287,3 +287,11 @@
     width: 80%;
   }
 }
+
+ol.pagination {
+  justify-content: center!important;
+}
+.active>.page-link, .page-link.active {
+  background-color: #1d8a92 !important;
+  border-color: #1d8a92 !important;
+}
