@@ -2,21 +2,21 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Assets/css/style.css">
-    <link rel="stylesheet" href="Assets/css/custom-admin.css">
-    <link rel="stylesheet" href="Assets/fullcalendar/css/main.css">
+    <link rel="stylesheet" href="<?= base_url ?>Assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url ?>Assets/css/custom-admin.css">
+    <link rel="stylesheet" href="<?= base_url ?>Assets/fullcalendar/css/main.css">
     <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-     <link rel="icon" type="image/jpg" href="Assets/Brand/Logo PNG/Favicon.png"/>
+     <link rel="icon" type="image/jpg" href="<?= base_url ?>Assets/Brand/Logo PNG/Favicon.png"/>
     </head>
 <body>
   <div class="sidebar">
     <div class="logo-details">
       <!--<i class='bx bxl-c-plus-plus icon'></i>-->
-      <img class="icon" src="Assets/Brand/Logo PNG/Favicon.png" alt="Logo I.E.S Celia Viñas" width="40px" height="40px">
+      <img class="icon" src="<?= base_url ?>Assets/Brand/Logo PNG/Favicon.png" alt="Logo I.E.S Celia Viñas" width="40px" height="40px">
         <div class="logo_name">&nbsp;&nbsp;I.E.S Celia Viñas</div>
         <!--<i class='bx bx-menu' id="btn" ></i>-->
         <i class="fa-solid fa-bars" id="btn"></i>
@@ -36,14 +36,16 @@
        <span class="tooltip">Inicio</span>
      </li>
       <li>
-       <a href="?controller=ResourcesController&action=mostrarResources">
+       <!--<a href="?controller=ResourcesController&action=mostrarResources">-->
+       <a href="<?= base_url ?>ResourcesController/mostrarResources">
          <i class="fa-regular fa-folder"></i>
          <span class="links_name">Recursos</span>
        </a>
        <span class="tooltip">Recursos</span>
      </li>
       <li>
-       <a href="?controller=UsersController&action=mostrarUsuarios">
+       <!--<a href="?controller=UsersController&action=mostrarUsuarios">-->
+       <a href="<?= base_url ?>UsersController/mostrarUsuarios">
          <i class="fa-regular fa-user"></i>
          <span class="links_name">Usuarios</span>
        </a>
@@ -87,7 +89,7 @@
      </li>
      <li class="profile">
          <div class="profile-details">
-           <img src="<?= SecurityModel::getImage(); ?>" alt="profileImg">
+           <img src="<?= base_url ?><?= SecurityModel::getImage(); ?>" alt="profileImg">
            <div class="name_job">
              <div class="name"><?= SecurityModel::getRealname(); ?>&nbsp;<?= SecurityModel::getLastname(); ?> </div>
              <div class="job">

@@ -41,7 +41,7 @@
                                         Please select a valid state.
                                     </div>
                                 </div>-->
-                                <div class="row mt-3">
+                                <div class="row mt-3 ms-auto">
                                     <label for="validationCustom04" class="form-label">Día de la Semana</label>
                                     <select class="form-select" id="validationCustom04" name="dayofweek-timeslots" required>
                                         <option selected disabled value="">-- Selecciona un día de la semana --</option>
@@ -130,8 +130,10 @@
                             </ul>
                         </div>
                     </td>
-                    <div>
-        <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodal" aria-hidden="true" data-bs-keyboard="false">
+                    <div> 
+                </tr>
+            <?php endforeach; ?>
+            <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodal" aria-hidden="true" data-bs-keyboard="false">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
@@ -139,49 +141,52 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="?controller=TimeSlotsController&action=actualizarTimeSlot&id=<?= $timeslot->id ?>" method="POST" enctype="multipart/form-data" id="form">
-                     <div class="row mt-3">
-                                    <label for="day-select" class="form-label">Día de la Semana</label>
-                                    <select class="form-select" id="day-select" name="day-select" required>
-                                        <option selected disabled value="">-- Selecciona un día de la semana --</option>
-                                        <option value="Lunes">Lunes</option>
-                                        <option value="Martes">Martes</option>
-                                        <option value="Miercoles">Miercoles</option>
-                                        <option value="Jueves">Jueves</option>
-                                        <option value="Viernes">Viernes</option>
-                                        <option value="Sábado" disabled>Sábado</option>
-                                        <option value="Domingo" disabled>Domingo</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Selecciona un día válido
-                                    </div>
-                                </div>
-                                <div class="row mt-4 mb-5">
-                                    <div class="col-md-6">
-                                        <label for="starttime" class="form-label">Tiempo de Inicio</label>
-                                        <input type="time" class="form-control" id="starttime" aria-describedby="emailHelp" name="starttime" required>
-                                        <div class="invalid-feedback">
-                                            Selecciona una hora de inicio válida
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ms-auto">
-                                        <label for="endtime" class="form-label">Tiempo de Finalización</label>
-                                        <input type="time" class="form-control" id="endtime" aria-describedby="emailHelp" name="endtime" required>
-                                        <div class="invalid-feedback">
-                                            Selecciona una hora de finalización válida
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer mt-4">
-                                    <input type="submit" class="btn btn-primary" value="Modificar timeslot">
-                                </div>
+                  <form action="" method="POST" enctype="multipart/form-data" id="edit-form" class="needs-validation" novalidate>
+
+                        <!-- Mandar el ID al controlador del recurso que tiene que modificar -->
+                        <input type="hidden" value="" id="id" name="id">
+                        
+                        <div class="row mt-3 ms-auto">
+                            <label for="day-select" class="form-label">Día de la Semana</label>
+                                <select class="form-select" id="day-select" name="day-select" required>
+                                    <option selected disabled value="">-- Selecciona un día de la semana --</option>
+                                    <option value="Lunes">Lunes</option>
+                                    <option value="Martes">Martes</option>
+                                    <option value="Miercoles">Miercoles</option>
+                                    <option value="Jueves">Jueves</option>
+                                    <option value="Viernes">Viernes</option>
+                                    <option value="Sábado" disabled>Sábado</option>
+                                    <option value="Domingo" disabled>Domingo</option>
+                                </select>
+                            <div class="invalid-feedback">
+                                Selecciona un día válido
+                            </div>
+                        </div>
+                        <div class="row mt-4 mb-5">
+                            <div class="col-md-6">
+                                <label for="starttime" class="form-label">Tiempo de Inicio</label>
+                                <input type="time" class="form-control" id="starttime" aria-describedby="emailHelp" name="starttime" required>
+                            <div class="invalid-feedback">
+                                Selecciona una hora de inicio válida
+                            </div>
+                        </div>
+                        <div class="col-md-6 ms-auto">
+                            <label for="endtime" class="form-label">Tiempo de Finalización</label>
+                                <input type="time" class="form-control" id="endtime" aria-describedby="emailHelp" name="endtime" required>
+                            <div class="invalid-feedback">
+                                Selecciona una hora de finalización válida
+                            </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer mt-4">
+                            <button type="button" class="btn btn-primary" onclick="enviarDatos()">Modificar timeslot<button>
+                            <input type="submit" id="sendForm" value="Modificar timeslot" style="display: none !important;">
+                        </div>
                   </form>
                 </div>
               </div>
             </div>
-          </div>  
-                </tr>
-            <?php endforeach; ?>
+          </div> 
             </tbody>
         </table>
         <?php $paginacion->render(); ?>
@@ -194,6 +199,7 @@
     var daySelect = document.getElementById('day-select');
     var starttime = document.getElementById('starttime');
     var endtime = document.getElementById('endtime');
+    var id = document.getElementById('id');
     var timeSlots = <?php echo json_encode($data['timeslots']); ?> 
 
     console.log(timeSlots);
@@ -208,6 +214,8 @@
                 infoTimeSlot.push(timeSlots[i]);
             }
         }
+
+        console.log(infoTimeSlot);
 
         for(var i = 0; i < dias.length; i++){
             if(dias[i] != infoTimeSlot[0]['dayofweek']){
@@ -232,10 +240,36 @@
         
         starttime.value = infoTimeSlot[0]['starttime'];
         endtime.value = infoTimeSlot[0]['endtime'];
+        id.value = <?= $timeslot->id ?>;
        
 
         myModal.show();
     
+    }
+
+    function enviarDatos(){
+        let idModificar = document.getElementById('id').value;
+        document.getElementById("edit-form").action = "?controller=TimeSlotsController&action=actualizarTimeSlot&id=" + idModificar; 
+        swal({
+                title: "¿Estás seguro?",
+                text: "Si modificas este Tramo Horario se modificará también en los recursos que hayan sido reservados",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    swal("¡Tramo Horario modificado correctamente!", {
+                    icon: "success",
+                    });
+                    setTimeout(() => {
+                        document.getElementById("sendForm").click()
+                        //window.location.href = "" + ;
+                    }, 2000);
+                } else {
+                    swal("¡Su Tramo Horario no ha sido modificado!");
+                }
+            });
     }
 
     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -278,5 +312,5 @@
                     swal("¡Su recurso no ha sido borrado!");
                 }
             });
-        }
+    }
 </script>

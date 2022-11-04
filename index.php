@@ -6,6 +6,9 @@
     // Requeriremos el archivo autoload, el cual cargará todos los controladores de manera automática sin tener que requerir uno a uno en el index.
     require_once 'autoload.php';
 
+    // 
+    require_once 'Config/Parameters.php';
+
     // Comprobamos si el controlador que recibimos por la URL del navegador existe
     if(isset($_GET['controller'])){
 

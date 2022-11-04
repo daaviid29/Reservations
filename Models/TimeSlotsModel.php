@@ -83,9 +83,7 @@
 
             $sql = "UPDATE timeslots SET dayofweek = '{$this->dayofweek}', starttime = '{$this->starttime}', endtime = '{$this->endtime}' WHERE id = $id;";
 
-            echo $sql;
-
-            //$actualizarTimeSlot = $this->dataManipulation($sql);
+            $actualizarTimeSlot = $this->dataManipulation($sql);
 
             return $actualizarTimeSlot;
 

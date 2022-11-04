@@ -111,7 +111,7 @@
                 $timeslot->actualizarTimeSlot($_GET['id']);
 
                 // Redirigimos al usuario al método mostrarTimeSlots donde mostrará todos los timeslots actuales
-                //header("Location: ?controller=TimeSlotsController&action=mostrarTimeSlots");
+                header("Location: ?controller=TimeSlotsController&action=mostrarTimeSlots");
             
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a index.php puesto que en ese fichero está cargada 
             //la vista por defecto es el login
