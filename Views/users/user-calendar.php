@@ -84,8 +84,7 @@
           events: [
             <?php foreach($data['allReservations'] as $reserva): ?>
               {
-                id: "<?php echo $reserva->user?>",
-                title: "<?php echo $reserva->title ?>",
+                title: "Recurso: <?php echo $reserva->title ?> Usuario: <?php echo $reserva->user ?>",
                 start: "<?php echo $reserva->date?> <?php echo $reserva->starttime ?>",
                 end: "<?php echo $reserva->date?> <?php echo $reserva->endtime ?>",
                 //url: "",

@@ -65,7 +65,7 @@
                 <?php foreach($data['allReservations'] as $reservation): ?>
                 
                 <tr class="clickableRow">
-                    <td><?= $reservation->username; ?></td>
+                    <td><?= $reservation->user; ?></td>
                     <td><?= $reservation->dayofweek ?></td>
                     <td><?= $reservation->date ?></td>
                     <td><?= $reservation->starttime ?> | <?= $reservation->endtime ?></td>
