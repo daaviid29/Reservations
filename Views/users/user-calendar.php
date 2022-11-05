@@ -80,9 +80,11 @@
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek'
           },
+          //themeSystem: 'bootstrap5',
           events: [
             <?php foreach($data['allReservations'] as $reserva): ?>
               {
+                id: "<?php echo $reserva->user?>",
                 title: "<?php echo $reserva->title ?>",
                 start: "<?php echo $reserva->date?> <?php echo $reserva->starttime ?>",
                 end: "<?php echo $reserva->date?> <?php echo $reserva->endtime ?>",
@@ -92,12 +94,12 @@
               },
             <?php endforeach; ?>
           ],
-          dateClick: function(info){
+          /*dateClick: function(info){
             console.log(info);
             document.getElementById('start').value = info.dateStr;
             changeTimeSlot();
             myModal.show();
-          }
+          }*/
         });
         calendar.render();
         frm.addEventListener('submit', function(e){

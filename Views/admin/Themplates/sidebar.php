@@ -36,16 +36,16 @@
        <span class="tooltip">Inicio</span>
      </li>
       <li>
-       <!--<a href="?controller=ResourcesController&action=mostrarResources">-->
-       <a href="<?= base_url ?>ResourcesController/mostrarResources">
+       <a href="?controller=ResourcesController&action=mostrarResources">
+       <!--<a href="<?= base_url ?>ResourcesController/mostrarResources">-->
          <i class="fa-regular fa-folder"></i>
          <span class="links_name">Recursos</span>
        </a>
        <span class="tooltip">Recursos</span>
      </li>
       <li>
-       <!--<a href="?controller=UsersController&action=mostrarUsuarios">-->
-       <a href="<?= base_url ?>UsersController/mostrarUsuarios">
+       <a href="?controller=UsersController&action=mostrarUsuarios">
+       <!--<a href="<?= base_url ?>UsersController/mostrarUsuarios">-->
          <i class="fa-regular fa-user"></i>
          <span class="links_name">Usuarios</span>
        </a>

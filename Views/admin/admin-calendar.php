@@ -92,12 +92,12 @@
               },
             <?php endforeach; ?>
           ],
-          dateClick: function(info){
+          /*dateClick: function(info){
             console.log(info);
             document.getElementById('start').value = info.dateStr;
             changeTimeSlot();
             myModal.show();
-          }
+          }*/
         });
         calendar.render();
         frm.addEventListener('submit', function(e){
