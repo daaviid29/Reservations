@@ -113,7 +113,7 @@
             </thead>
             <tbody>
                 <?php foreach($data['timeslots'] as $timeslot): ?>              
-                <tr class="clickableRow">
+                <tr class="clickableRow align-middle">
                     <th scope="row"><?= $timeslot->id; ?></th>
                     <td><?= $timeslot->dayofweek ?></td>
                     <td><?= $timeslot->starttime ?></td>

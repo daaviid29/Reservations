@@ -135,7 +135,7 @@
             </thead>
             <tbody>
                 <?php foreach($data['users'] as $user): ?>
-                <tr>
+                <tr class="clickableRow align-middle">
                     <th scope="row"><?= $user->id ?></th>
                     <td><img src="<?= $user->image ?>" alt="user" class="user-img"></td>
                     <td><?= $user->realname ?>&nbsp;<?= $user->lastname ?></td>

@@ -25,16 +25,27 @@
                     <th scope="col">Tramo horario</th>
                     <th scope="col">Nombre del recurso</th>
                     <th scope="col">Imagen del recurso</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($data['myreservations'] as $reservation): ?>
-                <tr class="clickableRow">
+                <tr class="clickableRow align-middle">
                     <td><?= $reservation->dayofweek ?></td>
                     <td><?= $reservation->date ?></td>
                     <td><?= $reservation->starttime ?> | <?= $reservation->endtime ?></td>
                     <td><?= $reservation->nameresource ?></td>
                     <td><img src="<?= $reservation->image ?>" class="resource-img" alt="img-resource"></td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-gear"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#" onclick="confirmarBorrado(<?= $user->id ?>)"><i class="fa-solid fa-trash"></i>&nbsp; Cancelar Reserva</a></li>                                     
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

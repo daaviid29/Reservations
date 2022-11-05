@@ -1,3 +1,10 @@
+<style>
+    .resource-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+</style>
 <title>Administración | Reservas</title>
 <div class="container mt-5">
         <div class="container-breadcum row">
@@ -59,28 +66,29 @@
                     <th scope="col">Fecha</th>
                     <th scope="col">Tramo horario</th>
                     <th scope="col">Nombre del recurso</th>
+                    <th scope="col">Imagen del Recurso</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($data['allReservations'] as $reservation): ?>
-                
-                <tr class="clickableRow">
+                <tr class="clickableRow align-middle">
                     <td><?= $reservation->user; ?></td>
                     <td><?= $reservation->dayofweek ?></td>
                     <td><?= $reservation->date ?></td>
                     <td><?= $reservation->starttime ?> | <?= $reservation->endtime ?></td>
                     <td><?= $reservation->name ?></td>
-                    <!--<td>
+                    <td><img src="<?= $reservation->image ?>" class="resource-img" alt="img-resource"></td>
+                    <td>
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-gear"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>&nbsp; Borrar</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="cancelarReserva()"><i class="fa-solid fa-trash"></i>&nbsp; Cancelar Reserva</a></li>                                     
                             </ul>
                         </div>
-                    </td>-->
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

@@ -102,7 +102,7 @@
             <tbody>
                 <?php foreach($data['resources'] as $resource): ?>
                 
-                <tr class="clickableRow">
+                <tr class="clickableRow align-middle">
                     <th scope="row"><?= $resource->id; ?></th>
                     <td><?= $resource->name ?></td>
                     <td><?= $resource->description ?></td>
