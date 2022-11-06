@@ -133,6 +133,14 @@
 
         }
 
+        public function deleteAllResources(){
+            $sql = "DELETE FROM resources;";
+
+            $deleteAllResorcues = $this->dataManipulation($sql);
+
+            return $deleteAllResorcues;
+
+        }
 
     }
 

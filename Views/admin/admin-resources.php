@@ -82,7 +82,7 @@
                     </form>
                 </div>
                 <div class="col-sm-auto text-right mb-2">
-                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                    <a type="input" class="btn btn-danger" onclick="eliminarRecursos();">
                         <i class="fa-solid fa-trash"></i> Eliminar Recursos
                     </a>
                 </div>
@@ -128,49 +128,68 @@
     </div>
 </div>
 </section>
-    <script>
+<script>
 
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-        'use strict'
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+    'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-            }, false)
-        })
-        })()
-
-        function confirmarBorrado(idResource){
-            swal({
-                title: "¿Estás seguro?",
-                text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    swal("¡Recurso borrado correctamente!", {
-                    icon: "success",
-                    });
-                    setTimeout(() => {
-                        window.location.href = "?controller=ResourcesController&action=borrarResource&id=" + idResource;
-                    }, 2000);
-                } else {
-                    swal("¡Su recurso no ha sido borrado!");
-                }
-            });
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
         }
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
 
+    function confirmarBorrado(idResource){
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Recurso borrado correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=ResourcesController&action=borrarResource&id=" + idResource;
+                }, 2000);
+            } else {
+                swal("¡Su recurso no ha sido borrado!");
+            }
+        });
+    }
+    function eliminarRecursos(){
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si borras los recursos no podrás recuperarlos y dejarán de tener uso en el resto de la aplicación",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Recursos borrados correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=ResourcesController&action=deleteAllResources";
+                }, 2000);
+            } else {
+                swal("¡Sus recursos no ha sido borrados!");
+            }
+        });
+    }
 
-    </script>
+</script>
