@@ -61,6 +61,7 @@
         <table class="table table-hover table-light mt-3 text-center">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Día de la semana</th>
                     <th scope="col">Fecha</th>
@@ -73,6 +74,7 @@
             <tbody>
                 <?php foreach($data['allReservations'] as $reservation): ?>
                 <tr class="clickableRow align-middle">
+                    <th><?= $reservation->id; ?></th>
                     <td><?= $reservation->user; ?></td>
                     <td><?= $reservation->dayofweek ?></td>
                     <td><?= $reservation->date ?></td>
@@ -85,7 +87,7 @@
                                 <i class="fa-solid fa-gear"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#" onclick="cancelarReserva()"><i class="fa-solid fa-trash"></i>&nbsp; Cancelar Reserva</a></li>                                     
+                                <li><a class="dropdown-item" href="#" onclick="cancelarReserva(<?= $reservation->id; ?>)"><i class="fa-solid fa-trash"></i>&nbsp; Eliminar Reserva</a></li>                                     
                             </ul>
                         </div>
                     </td>
@@ -99,26 +101,50 @@
 </section>
 <script>
     function confirmarBorrado(){
-            swal({
-                title: "¿Estás seguro?",
-                text: "¿Desea borrar TODAS las reservas?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    swal("¡Reservas borradas correctamente!", {
-                    icon: "success",
-                    });
-                    setTimeout(() => {
-                        window.location.href = "?controller=ResourcesController&action=deleteAllReservations";
-                    }, 2000);
-                } else {
-                    swal("¡Sus reservas no han sido borradas!",{
-                        icon: "error"
-                    });
-                }
-            });
-        }
+        swal({
+            title: "¿Estás seguro?",
+            text: "¿Desea borrar TODAS las reservas?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Reservas borradas correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=ResourcesController&action=deleteAllReservations";
+                }, 2000);
+            } else {
+                swal("¡Sus reservas no han sido borradas!",{
+                    icon: "error"
+                });
+            }
+        });
+    }
+    
+    function cancelarReserva(idBorrar){
+        swal({
+            title: "¿Estás seguro?",
+            text: "¿Desea Borrar / Cancelar esta reserva?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Reserva Borrada / Cancelada correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=ResourcesController&action=cancelarReserva&id=" + idBorrar;
+                }, 2000);
+            } else {
+                swal("¡Sus reserva no han sido Borrada / Cancelada!",{
+                    icon: "error"
+                });
+            }
+        });
+    }
 </script>

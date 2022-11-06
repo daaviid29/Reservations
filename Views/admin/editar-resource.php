@@ -1,19 +1,14 @@
-<?php require_once "Themplates/sidebar.php" ?>
+<title>Administración | Editar Recurso</title>
+<style>
+    body{
+        background-color: #eeeeee !important;
+    }
+    .mt-5{
+        margin-top: 4rem !important;
+    }
+</style>
 
-
-<section class="home-section">
-    <?php require_once "Themplates/navbar.php" ?>
-
-    <style>
-        body{
-            background-color: #eeeeee !important;
-        }
-        .mt-5{
-            margin-top: 4rem !important;
-        }
-    </style>
-
-    <?php foreach($data['getResource'] as $resource): ?>  
+<?php foreach($data['getResource'] as $resource): ?>  
 
     <div class="container mt-5">
         <div class="container-breadcum row mt-5">
@@ -35,24 +30,25 @@
                 <div class="row g-3 mt-5">
                     <div class="col">
                         <label for="titulo-pelicula" class="form-label">Nombre del recurso</label>
-                        <input type="text" class="form-control" placeholder="<?= $resource->name?>" name="name-resources" aria-label="First name">
+                        <input type="text" class="form-control" placeholder="<?= $resource->name?>" value="<?= $resource->name?>" name="name-resources" aria-label="First name">
                     </div>
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Localización del recurso</label>
-                        <input type="text" class="form-control" placeholder="<?= $resource->location?>" name="location-resources" aria-label="Last name">
+                        <input type="text" class="form-control" placeholder="<?= $resource->location?>" value="<?= $resource->location?>" name="location-resources" aria-label="Last name">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <label for="genero-pelicula" class="form-label">Descripción del recurso</label>
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="akmsk" id="floatingTextarea2" style="height: 100px" name="description-resources"></textarea>
+                        <!--<textarea class="form-control" id="floatingTextarea2" style="height: 100px" name="description-resources" value="<?= $resource->description?>"></textarea>-->
+                        <input type="text" class="form-control" id="floatingTextarea2" style="height: 100px" name="description-resources" value="<?= $resource->description?>">
                         <label for="floatingTextarea2"><?= $resource->description?></label>
                     </div>
                 </div>
 
                 <div class="row mt-4 mt-2">
                     <div class="input-group mb-4">
-                        <input type="file" class="form-control" id="upload-files" name="file-resources" required="required" accept="image/*">
+                        <input type="file" class="form-control" id="upload-files" name="file-resources" accept="image/*" value="<?= $resource->image?>">
                         <label class="input-group-text" for="upload-files">Subir</label>
                     </div>
                 </div>
@@ -65,5 +61,4 @@
         </form>
     </div>
     </div>
-    <?php endforeach; ?>
-<?php require_once "Themplates/footer.php" ?>
+<?php endforeach; ?>

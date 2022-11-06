@@ -33,21 +33,21 @@
                 <div class="row g-3 mt-5">
                     <div class="col">
                         <label for="titulo-pelicula" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" placeholder="<?= $user->realname?>" name="realname-user" aria-label="First name">
+                        <input type="text" class="form-control" placeholder="<?= $user->realname?>" value="<?= $user->realname?>" name="realname-user" aria-label="First name">
                     </div>
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" placeholder="<?= $user->lastname?>" name="lastname-user" aria-label="Last name">
+                        <input type="text" class="form-control" placeholder="<?= $user->lastname?>" value="<?= $user->lastname?>" name="lastname-user" aria-label="Last name">
                     </div>
                 </div>
                 <div class="row g-3 mt-3">
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" placeholder="<?= $user->username?>" name="username-user" aria-label="Last name">
+                        <input type="text" class="form-control" placeholder="<?= $user->username?>" value="<?= $user->username?>" name="username-user" aria-label="Last name">
                     </div>
                     <div class="col">
                         <label for="genero-pelicula" class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="<?= $user->email?>" name="email-user" aria-label="Last name">
+                        <input type="email" class="form-control" placeholder="<?= $user->email?>" value="<?= $user->email?>" name="email-user" aria-label="Last name">
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
 
                 <div class="row mt-4 mt-2">
                     <div class="input-group mb-4">
-                        <input type="file" class="form-control" id="upload-files" name="file-user" required="required" accept="image/*">
+                        <input type="file" class="form-control" id="upload-files" name="file-user" accept="image/*">
                         <label class="input-group-text" for="upload-files">Subir</label>
                     </div>
                 </div>

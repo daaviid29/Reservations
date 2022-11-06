@@ -1,3 +1,10 @@
+<style>
+    .resource-img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50px;
+    }
+</style>
 <title>Usuario | Reservar</title>
 <div class="container mt-5">
         <div class="container-breadcum row">
@@ -13,10 +20,11 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Imagen</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Localización</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +32,7 @@
                     
                     <tr class="clickableRow align-middle">
                         <th scope="row"><?= $resource->id; ?></th>
+                        <td><img src="<?= $resource->image; ?>" class="resource-img" alt="img-resource"></td>
                         <td><?= $resource->name ?></td>
                         <td><?= $resource->description ?></td>
                         <td><?= $resource->location ?></td>
