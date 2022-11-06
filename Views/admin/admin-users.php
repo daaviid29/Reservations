@@ -170,13 +170,9 @@
 </div>
 </section>
 
-    <?php
-    
-        if(isset($data['error'])){
-            echo $data['error'];
-        }
-
-    ?>
+    <?php if(isset($data['error'])): ?>
+        <?= $data['error']; ?>
+    <?php endif; ?>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

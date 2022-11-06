@@ -36,7 +36,8 @@
     border-top-left-radius: 0px !important;
   }
   p.dropdown-toggle.container-fluid.mt-3 {
-    color: #ffffff !important;
+    /*color: #ffffff !important;*/
+    color: #11101D !important;
   }
   /*.bg-dark{
     z-index: 1000 !important;

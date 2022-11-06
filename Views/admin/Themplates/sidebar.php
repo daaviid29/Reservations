@@ -80,13 +80,13 @@
        </a>
        <span class="tooltip">Reservas</span>
      </li>
-     <li>
+     <!--<li>
        <a href="#">
          <i class="fa-solid fa-gear"></i>
          <span class="links_name">Configuración</span>
        </a>
        <span class="tooltip">Configuración</span>
-     </li>
+     </li>-->
      <li class="profile">
          <div class="profile-details">
            <img src="<?= base_url ?><?= SecurityModel::getImage(); ?>" alt="profileImg">
