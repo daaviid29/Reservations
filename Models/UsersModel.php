@@ -76,11 +76,23 @@
 
         public function crearUser(){
 
-            $sql = "INSERT INTO users (username, email, password, realname, lastname, image, type) VALUES('{$this->username}', '{$this->email}', '{$this->password}','{$this->realname}', '{$this->lastname}', '{$this->image}', '{$this->rol}')";
+            $sql = "INSERT INTO users (username, email, password, realname, lastname, image, type) VALUES('{$this->username}', '{$this->email}', '{$this->password}','{$this->realname}', '{$this->lastname}', '{$this->image}', '{$this->rol}')";            
+
+            echo $sql;
 
             $crearUsuario = $this->dataManipulation($sql);
 
             return $crearUsuario;
+
+        }
+
+        public function comprobarRegistro(){
+            
+            $comprobar = "SELECT COUNT(*) AS total_registros FROM users WHERE email = '{$this->email}' OR username = '{$this->username}'";
+
+            $comprobarUsuario = $this->dataQuery($comprobar);
+
+            return $comprobarUsuario[0]->total_registros;
 
         }
 

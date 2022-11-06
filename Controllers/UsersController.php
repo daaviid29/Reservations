@@ -18,6 +18,7 @@
 
                 // Almacenamos el resultado del método getUsers en una variable data, en el índice users, puesto que data es un array
                 $data['users'] = $users->get('users');
+                // Utilizamos una variable paginación para mostrar los usuarios de manera paginada y que sea más cómodo para el usuario a la hora de verlos
                 $paginacion = $users->Paginacion('users');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
@@ -49,12 +50,24 @@
                 $users->setImage(SecurityModel::limpiar($_FILES['file-user']['name']));
                 $users->setRol(SecurityModel::limpiar($_REQUEST['role-user']));
 
-                // Accedemos al Objeto que hemos creado anteriormente, más concretamente al método crearUser() y como ya tenemos en nuestros setters los datos
-                // recogidos no necesitamos pasarle ningún parámetro al método, es por ello por lo que no lleva parámetros.
-                $users->crearUser();
+                // Accedemos al Objeto que hemos creado anteriormente, más concretamente al método comprobarRegistro() y como ya tenemos en nuestros setters los datos
+                // recogidos no necesitamos pasarle ningún parámetro al método, en ese método comprobamos si hay algún usuario con el nombre de usuario y email ya
+                // registrado, si devuelve 1 es que ya hay un usuario y si devuelve 0 no hay ningun usuario por lo tanto lo creará                
+                if($users->comprobarRegistro() != 0){
+                    // Si devuelve 1 en la variable data más concretamente en el índice error mostraremos una alerta de que ya hay un usuario registrado
+                    $data['error'] = '<script>swal("¡No se ha podido registrar al usuario!", "Ese usuario o email ya está registrado", "error");</script>';
+                }else{
+                    // Si devuelve 0 creareoms el usuario y no será necesario mostrar ningun mensaje
+                    $users->crearUser();
+                }
 
-                // Por último, redirigimos al usuario para mostrar el listado de usuarios
-                header("Location: ?controller=UsersController&action=mostrarUsuarios");
+                // Almacenamos el resultado del método getUsers en una variable data, en el índice users, puesto que data es un array
+                $data['users'] = $users->get('users');
+                // Utilizamos una variable paginación para mostrar los usuarios de manera paginada y que sea más cómodo para el usuario a la hora de verlos
+                $paginacion = $users->Paginacion('users');
+
+                // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
+                View::adminViews('admin-users', $data, $paginacion);
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
             // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
             }else{
