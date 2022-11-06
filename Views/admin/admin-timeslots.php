@@ -93,7 +93,7 @@
                     </form>
                 </div>
                 <div class="col-sm-auto text-right mb-2">
-                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                    <a type="input" class="btn btn-danger" onclick="eliminarTimeSlots();">
                         <i class="fa-solid fa-trash"></i> Eliminar TimeSlots
                     </a>
                 </div>
@@ -293,24 +293,46 @@
     })()
 
     function confirmarBorrado(idTimeSlot){
-            swal({
-                title: "¿Estás seguro?",
-                text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    swal("¡Recurso borrado correctamente!", {
-                    icon: "success",
-                    });
-                    setTimeout(() => {
-                        window.location.href = "?controller=TimeSlotsController&action=borrarTimeSlot&id=" + idTimeSlot;
-                    }, 2000);
-                } else {
-                    swal("¡Su recurso no ha sido borrado!");
-                }
-            });
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Recurso borrado correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=TimeSlotsController&action=borrarTimeSlot&id=" + idTimeSlot;
+                }, 2000);
+            } else {
+                swal("¡Su recurso no ha sido borrado!");
+            }
+        });
+    }
+
+    function eliminarTimeSlots(){
+        swal({
+            title: "Desea borra todos los timeslots?",
+            text: "Seguro que Desea Borrar todos los Timeslots, esto afectará a las reservas activas",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Timeslots borrados correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=TimeSlotsController&action=borrarTimeSlots";
+                }, 2000);
+            } else {
+                swal("¡Sus timeslots están a salvo!");
+            }
+        });
     }
 </script>

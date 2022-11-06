@@ -70,15 +70,6 @@
 
         }
 
-        /*public function mostrarResource($id){
-
-            $sql = "SELECT * FROM resources WHERE id = $id";
-
-            $mostrarResources = $this->dataQuery($sql);
-
-            return $mostrarResources;
-        }*/
-
         public function actualizarTimeSlot($id){
 
             $sql = "UPDATE timeslots SET dayofweek = '{$this->dayofweek}', starttime = '{$this->starttime}', endtime = '{$this->endtime}' WHERE id = $id;";
@@ -96,6 +87,14 @@
 
             return $timeslots;
 
+        }
+
+        public function borrarTimeSlots(){
+            $sql = "DELETE FROM timeslots";
+
+            $borrados = $this->dataQuery($sql);
+
+            return $borrados;
         }
 
     }

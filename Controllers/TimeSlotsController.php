@@ -38,7 +38,7 @@
                 $timeslot = new TimeSlotsModel();
 
                 // Recogemos los datos del formulario y utilizamos los setters para guardarlos en el modelo y luego poder utilizarlos para la insercción
-                $timeslot->setDayofweek($_REQUEST['dayofweek-timeslots']);
+                $timeslot->setDayofweek(SecurityModel::limpiar($_REQUEST['dayofweek-timeslots']));
                 $timeslot->setStarttime($_REQUEST['starttime-timeslots']);
                 $timeslot->setEndtime($_REQUEST['endtime-timeslots']);
 
@@ -80,20 +80,23 @@
             }
         }
 
-        /*public function mostrarTimeSlot(){
-            // Cargamos el modelo
-            require_once 'Models/TimeSlotsModel.php';
+        // Método para Borrar TODOS los TimeSlots SOLO PARA ADMINISTRADORES.
+        public function borrarTimeSlots(){
+            // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $timeslot = new TimeSlotsModel();
 
-            // Crearemos el objeto sobre el que trabajaremos
-            $resources = new TimeSlotsModel();
+                //  Accedemos al objeto timeslot que creamos anteriormente, más concretamente al método borrarTimeSlots() para borrar TODOS LOS TIMESLOTS
+                $timeslot->borrarTimeSlots();
 
-            // Creamos un nuevo objeto con los datos que hemos recogido anteriormente
-            $data['getResource'] = $resources->mostrarResource($_GET['id']);
-
-            // Requerimos la vista donde mostraremos el contenido
-            //require_once 'Views/admin/editar-resource.php';
-            View::adminViews('editar-resource', $data);
-        }*/
+            // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
+            // llamada 403 (forbiden) de manera personalizada, para saber que no tenemos permisos para acceder a dicho método
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
+        }
 
         // Método para Actualizar datos de un TimeSlot SOLO PARA ADMINISTRADORES.
         public function actualizarTimeSlot(){
@@ -103,7 +106,7 @@
                 $timeslot = new TimeSlotsModel();
 
                 // Recogemos los datos y utilizamos los setters para guardarlos
-                $timeslot->setDayofweek($_REQUEST['day-select']);
+                $timeslot->setDayofweek(SecurityModel::limpiar($_REQUEST['day-select']));
                 $timeslot->setStarttime($_REQUEST['starttime']);
                 $timeslot->setEndtime($_REQUEST['endtime']);
 
