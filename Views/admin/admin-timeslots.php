@@ -101,7 +101,7 @@
         </div>
 
     <div class="table-responsive mt-2">
-        <table class="table table-hover table-light mt-3 text-center">
+        <table class="table table-hover table-light mt-3 text-start">
             <thead>
                 <tr>
                     <th scope="col">ID</th>

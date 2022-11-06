@@ -42,7 +42,7 @@
                                 <i class="fa-solid fa-gear"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#" onclick="confirmarBorrado(<?= $user->id ?>)"><i class="fa-solid fa-trash"></i>&nbsp; Cancelar Reserva</a></li>                                     
+                                <li><a class="dropdown-item" href="#" onclick="confirmarBorrado(<?= $reservation->id ?>)"><i class="fa-solid fa-trash"></i>&nbsp; Cancelar Reserva</a></li>                                     
                             </ul>
                         </div>
                     </td>
@@ -53,3 +53,28 @@
     </div>
     </div>
 </section>
+
+
+<script>
+    function confirmarBorrado(idReservation){
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si cancelas esta reserva, puede ser reservado por otra persona en esta fecha y hora",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Reserva Cancelada con éxito!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=ResourcesController&action=cancelarReserva&id=" + idReservation;
+                }, 2000);
+            } else {
+                swal("¡Su reserva no ha sido cancelada!");
+            }
+        });
+    }
+</script>

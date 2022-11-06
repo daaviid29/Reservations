@@ -170,11 +170,20 @@
         }
 
         public function getReservas($id){
-            $sql = "SELECT timeslots.dayofweek, timeslots.starttime, timeslots.endtime, reservations.date, resources.image, resources.name AS nameresource FROM reservations INNER JOIN resources ON resources.id = reservations.idResource INNER JOIN timeslots ON timeslots.id = reservations.idTimeSlot WHERE reservations.idUser = $id;";
+            $sql = "SELECT reservations.id, timeslots.dayofweek, timeslots.starttime, timeslots.endtime, reservations.date, resources.image, resources.name AS nameresource FROM reservations INNER JOIN resources ON resources.id = reservations.idResource INNER JOIN timeslots ON timeslots.id = reservations.idTimeSlot WHERE reservations.idUser = $id;";
 
             $result = $this->dataquery($sql);
 
             return $result;
+        }
+
+        public function cancelarReserva($id){
+            $sql = "DELETE FROM reservations WHERE id = $id";
+
+            $result = $this->dataManipulation($sql);
+
+            return $result;
+
         }
 
     }

@@ -89,7 +89,7 @@
      </li>-->
      <li class="profile">
          <div class="profile-details">
-           <img src="<?= base_url ?><?= SecurityModel::getImage(); ?>" alt="profileImg">
+           <img src="<?= SecurityModel::getImage(); ?>" alt="profileImg">
            <div class="name_job">
              <div class="name"><?= SecurityModel::getRealname(); ?>&nbsp;<?= SecurityModel::getLastname(); ?> </div>
              <div class="job">

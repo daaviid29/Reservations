@@ -285,8 +285,14 @@
                 //
                 $resources->delete('reservations', $_GET['id']);
 
+                if(SecurityModel::getRol() == 0){
+                    header("Location: ?controller=ResourcesController&action=reservas");
+                }else{
+                    header("Location: ?controller=ResourcesController&action=getMyReservations");
+                }
+
                 // Construimos la vista donde mostraremos el contenido, para ello, le pasamos la variable data que es la que almacena el resultado de la busqueda
-                header("Location: ?controller=ResourcesController&action=reservas");
+                
                 //View::adminViews('admin-reservas', $data);
             
             // En el caso de que el usuario no haya iniciado sesión o que no sea un adminsitrador no podrá acceder a este método, para ello, he realizado una vista
