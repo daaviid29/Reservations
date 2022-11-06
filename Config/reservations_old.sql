@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2022 a las 16:32:07
+-- Tiempo de generación: 14-10-2022 a las 14:13:30
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `example`
+-- Base de datos: `reservations`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `reservations` (
-  `id` int(11) NOT NULL,
   `idResource` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `idTimeSlot` int(11) NOT NULL,
@@ -59,8 +58,8 @@ CREATE TABLE `resources` (
 CREATE TABLE `timeslots` (
   `id` int(11) NOT NULL,
   `dayofweek` varchar(1000) NOT NULL,
-  `starttime` time NOT NULL,
-  `endtime` time NOT NULL
+  `starttime` varchar(1000) NOT NULL,
+  `endtime` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -72,20 +71,10 @@ CREATE TABLE `timeslots` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(1000) NOT NULL,
-  `email` varchar(1000) NOT NULL,
   `password` varchar(1000) NOT NULL,
   `realname` varchar(1000) NOT NULL,
-  `lastname` varchar(1000) NOT NULL,
-  `image` varchar(1000) NOT NULL,
   `type` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `realname`, `lastname`, `image`, `type`) VALUES
-(1, 'admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '-', 0);
 
 --
 -- Índices para tablas volcadas
@@ -95,7 +84,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `realname`, `lastnam
 -- Indices de la tabla `reservations`
 --
 ALTER TABLE `reservations`
-  ADD PRIMARY KEY (`id`,`idResource`,`idTimeSlot`,`date`);
+  ADD PRIMARY KEY (`idResource`,`idUser`,`idTimeSlot`);
 
 --
 -- Indices de la tabla `resources`
@@ -120,12 +109,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de la tabla `reservations`
---
-ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `resources`
 --
 ALTER TABLE `resources`
@@ -141,7 +124,7 @@ ALTER TABLE `timeslots`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

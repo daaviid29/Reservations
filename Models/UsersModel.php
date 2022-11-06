@@ -115,7 +115,7 @@
 
         public function actualizarUser($id){
 
-            $sql = "UPDATE users SET username = '{$this->username}', realname = '{$this->realname}', lastname = '{$this->lastname}', image = '{$this->image}' WHERE id = $id;";
+            $sql = "UPDATE users SET username = '{$this->username}', realname = '{$this->realname}', lastname = '{$this->lastname}', type = '{$this->rol}', image = '{$this->image}' WHERE id = $id;";
 
             $actualizarResource = $this->dataManipulation($sql);
 

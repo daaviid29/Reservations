@@ -17,8 +17,15 @@
         </div>
 
         <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-auto text-right mb-2">
+                        <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                            <i class="fa-solid fa-trash"></i> Eliminar Reservas
+                        </a>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-md-auto mb-2">
+                <!--<div class="col-md-auto mb-2">
                 <a href="#" class="btn btn-success" title="Nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fas fa-plus fa-fw" aria-hidden="true"></i>
                     <span class="d-none d-xl-inline-block">Nueva Reserva</span>
@@ -38,7 +45,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>-->
                 <div class="col-sm mb-2">
                     <form class="input-group" action="?controller=TimeSlotsController&amp;action=buscarTimeSlot" method="POST" enctype="multipart/form-data">
                         <input class="form-control" type="text" name="query" value="" autocomplete="off" placeholder="Buscar">
@@ -49,11 +56,7 @@
                         </span>
                     </form>
                 </div>
-                <div class="col-sm-auto text-right mb-2">
-                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
-                        <i class="fa-solid fa-trash"></i> Eliminar Reservas
-                    </a>
-                </div>
+                
             </div>
         </div>
 

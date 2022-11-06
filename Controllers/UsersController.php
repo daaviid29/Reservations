@@ -67,7 +67,8 @@
                 $paginacion = $users->Paginacion('users');
 
                 // Construimos la vista donde cargaremos el contenido por ello le pasamos la variable data que es la que se construyó en la línea anterior
-                View::adminViews('admin-users', $data, $paginacion);
+                //View::adminViews('admin-users', $data, $paginacion);
+                header("Location: ?controller=UsersController&action=mostrarUsuarios");
             // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
             // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
             }else{
