@@ -24,6 +24,11 @@ class View{
         include($directorio . "$viewName.php");
     }
 
+    public static function login($viewName, $data = null){
+        $directorio = "login/";
+        include($directorio . "$viewName.php");
+    }
+
     public static function error403(){
         $directorio = "Views/403/";
         include($directorio . "403.php");

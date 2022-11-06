@@ -290,7 +290,27 @@
                 // Construimos la vista donde mostraremos el error 403 (forbiden).
                 View::error403();
             }
-        
+        }
+
+        // Método para borrar TODOS LOS usuarios SOLO PARA ADMINISTRADORES
+        public function deleteUsers(){
+             // Comprobamos si existe una sesión y si además el usuario que inicia la sesión tiene el rol 0 que sería Administrador YA QUE SOLO ÉL PUEDE REALIZAR
+            // ESTA ACCIÓN
+            if(SecurityModel::haySesion() && SecurityModel::getRol() == 0){
+                // Crearemos el objeto sobre el que trabajaremos
+                $users = new UsersModel();
+
+                $users->deleteAllUsers();
+                $data['usuario'] = '<script>swal("¡Usuarios Borrados correctamente!", "Nuevo usuario de Administración, Usuario: Admin Contraseña: admin", "success");</script>';
+
+                View::login('login', $data);
+
+            // Comprobamos si no existe una sesión, en caso de que no exista vamos a redirigir el usuario a una vista de error 403 personalizada puesto que el
+            // listado de los usuario que hay en el sistema solo pueden ser vistos por el Administrador del sistema
+            }else{
+                // Construimos la vista donde mostraremos el error 403 (forbiden).
+                View::error403();
+            }
         }
 
     }

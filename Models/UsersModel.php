@@ -132,6 +132,17 @@
             return $login;
         }
 
+        public function deleteAllUsers(){
+            $sql = "DELETE FROM users";
+            $password = md5("admin");
+            $createUser = "INSERT INTO users (username, email, password, realname, lastname, image, type) VALUES('Admin', 'admin@admin.com', '$password','admin', 'admin', '-', '0')";
+
+            $delete = $this->dataManipulation($sql);
+            $addNew = $this->dataManipulation($createUser);
+
+            return $delete;
+        }
+
     }
 
 

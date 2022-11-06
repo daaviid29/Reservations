@@ -113,7 +113,7 @@
                     </form>
                 </div>
                 <div class="col-sm-auto text-right mb-2">
-                    <a type="input" class="btn btn-danger" onclick="confirmarBorrado();">
+                    <a type="input" class="btn btn-danger" onclick="eliminarTodo();">
                         <i class="fa-solid fa-trash"></i> Eliminar Recursos
                     </a>
                 </div>
@@ -196,24 +196,47 @@
     })()
     
     function confirmarBorrado(idUser){
-            swal({
-                title: "¿Estás seguro?",
-                text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    swal("¡Recurso borrado correctamente!", {
-                    icon: "success",
-                    });
-                    setTimeout(() => {
-                        window.location.href = "?controller=UsersController&action=borrarUser&id=" + idUser;
-                    }, 2000);
-                } else {
-                    swal("¡Su recurso no ha sido borrado!");
-                }
-            });
-        }
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si borras este recurso no podrás recuperarlo y dejará de tener uso en el resto de la aplicación",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Recurso borrado correctamente!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=UsersController&action=borrarUser&id=" + idUser;
+                }, 2000);
+            } else {
+                swal("¡Su recurso no ha sido borrado!");
+            }
+        });
+    }
+
+    function eliminarTodo(){
+        swal({
+            title: "¿Estás seguro?",
+            text: "Si borras todos los Usuarios no podrás recuperarlos",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("¡Usuarios borrados con éxito!", {
+                icon: "success",
+                });
+                setTimeout(() => {
+                    window.location.href = "?controller=UsersController&action=deleteUsers";
+                }, 2000);
+            } else {
+                swal("¡Su recurso no ha sido borrado!");
+            }
+        });
+    }
+
 </script>
