@@ -50,7 +50,7 @@
                     <img src="Assets/Brand/Logo PNG/Logo Celia Viñas.png" class="img-fluid" width="25%">
                 </div>
                 <div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
-                    <h1 clas="font-weight-bold mb-4">Bienvenido de vuelta</h1>
+                    <h1 clas="font-weight-bold mb-4">Bienvenido <!--de vuelta--></h1>
                     <form class="mb-5" action="index.php?controller=UsersController&action=iniciarSesion" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
                           <label for="exampleInputEmail1" class="form-label font-weight-bold">Nombre de Usuario</label>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-      <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+      <!--<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
         <div class="toast-container top-0 end-0 p-3">
           <div id="liveToast" class="toast fade" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1000">
                 <div class="toast-header">
@@ -87,15 +87,9 @@
                 <div class="toast-body">
                   See? Just like this.
                 </div>
-          </div>
+          </div>-->
         </div>
     </section>
-
-  <?php var_dump($data['usuario']); ?>
-
-  <?php if(isset($data['usuario'])): ?>
-        <?= $data['usuario']; ?>
-    <?php endif; ?>
 
     <!-- Bootstrap JS -->
     <script>
